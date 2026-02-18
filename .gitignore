@@ -1,4 +1,18 @@
+# Dependencies
 node_modules
-/backend/config/env.php
-.env.local
+/vendor
+
+# Next.js
+/.next/
+/out/
+/build
+.DS_Store
+*.log
+
+# Environment
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/backend/config/env.php
