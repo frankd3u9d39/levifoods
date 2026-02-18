@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodApp Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF6B00","primary-hover": "#E65100",
+                        "background-dark": "#0F0F0F","surface-dark": "#1E1E1E","surface-highlight": "#2A2A2A",
+                        "text-primary": "#FFFFFF",
+                        "text-secondary": "#A3A3A3",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "3xl": "1.5rem","4xl": "2rem",
+                    },
+                    boxShadow: {
+                        "soft-deep": "0 20px 40px -10px rgba(0, 0, 0, 0.5)",
+                        "glow": "0 0 20px rgba(255, 107, 0, 0.3)",
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-text-primary font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-white">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-[#2A2A2A] bg-background-dark/80 backdrop-blur-md px-6 lg:px-10 py-4 transition-all duration-300">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center shadow-glow">
+<span class="material-symbols-outlined text-white text-2xl">restaurant_menu</span>
+</div>
+<h2 class="text-white text-2xl font-bold tracking-tight">FoodApp</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-center gap-10">
+<a class="text-white hover:text-primary transition-colors text-sm font-semibold tracking-wide" href="#">Home</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold tracking-wide" href="#">Restaurants</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold tracking-wide" href="#">Offers</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold tracking-wide" href="#">Help</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex min-w-[90px] cursor-pointer items-center justify-center rounded-2xl h-11 px-5 bg-surface-highlight text-white text-sm font-bold hover:bg-[#333] transition-colors">
+                Sign Up
+            </button>
+<button class="hidden sm:flex min-w-[90px] cursor-pointer items-center justify-center rounded-2xl h-11 px-5 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary-hover transition-all hover:scale-105">
+                Log In
+            </button>
+<button class="relative flex items-center justify-center rounded-2xl h-11 w-11 bg-surface-highlight text-white hover:bg-[#333] transition-colors">
+<span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+<span class="absolute top-2.5 right-2.5 size-2.5 bg-primary border-2 border-surface-highlight rounded-full"></span>
+</button>
+<button class="lg:hidden flex items-center justify-center rounded-2xl h-11 w-11 bg-transparent text-white hover:bg-surface-highlight/50">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center w-full">
+<div class="w-full max-w-[1440px] px-4 md:px-8 pt-8 pb-12">
+<div class="relative w-full rounded-[32px] overflow-hidden min-h-[560px] flex flex-col items-center justify-center p-8 text-center shadow-soft-deep isolate group">
+<div class="absolute inset-0 -z-10">
+<img alt="Delicious food spread on a dark table" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" data-alt="Dark moody food photography with various dishes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY5w0AxiedLBUpF9V27HjX-_ry0pz5NfpyyIg8NoHsaQaptB-WB6iwvjwzC7H-Wuqu08hygnuq8FFTrAsnAeU4n1rMr4kudDzu30gTZDdMTeumEGPestdT_wDuP_0FX4LY6yDqBCF_nlPYqasPil7-acUYSZIWP8Me-q2RtNqaPyjp6_FtLzCddjv1mznnvPWSlrZFiQ2NBT6fa5fRT345w5-oQADcg04ffPNw-wU3mKR6cU0upuDC4Ia-8nfkHWlrqIy8RNDUAw"/>
+<div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background-dark"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
+</div>
+<div class="flex flex-col gap-8 max-w-4xl items-center animate-fade-in-up">
+<div class="flex flex-col gap-4 items-center">
+<span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-sm text-primary text-xs font-bold uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                            Fastest Delivery
+                        </span>
+<h1 class="text-white text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.1] tracking-tight drop-shadow-lg">
+                            Craving Something <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-300">Extraordinary?</span>
+</h1>
+<p class="text-slate-300 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                            Discover the best food from over 1,000 restaurants and get it delivered to your doorstep in minutes.
+                        </p>
+</div>
+<div class="w-full max-w-2xl mt-4">
+<div class="flex w-full items-center bg-surface-dark/90 backdrop-blur-xl rounded-[24px] p-2 shadow-2xl border border-white/10 transition-all focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent focus-within:bg-surface-dark">
+<div class="pl-5 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">location_on</span>
+</div>
+<input class="w-full bg-transparent border-none text-white placeholder:text-text-secondary focus:ring-0 text-lg px-4 py-3 font-medium" placeholder="Enter delivery address..."/>
+<button class="bg-primary hover:bg-primary-hover text-white rounded-[18px] h-12 sm:h-14 px-8 text-base font-bold shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-95 flex items-center gap-2 whitespace-nowrap">
+<span class="hidden sm:inline">Find Food</span>
+<span class="material-symbols-outlined sm:hidden">search</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full max-w-[1440px] px-4 md:px-8 py-8">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-white text-3xl font-bold tracking-tight">Explore Categories</h2>
+<div class="flex gap-3">
+<button class="size-10 rounded-full bg-surface-dark border border-white/5 flex items-center justify-center hover:bg-surface-highlight text-white transition-all hover:scale-105">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 rounded-full bg-surface-dark border border-white/5 flex items-center justify-center hover:bg-surface-highlight text-white transition-all hover:scale-105">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-6 pb-6 -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth">
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Pizza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Pepperoni pizza slice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFK_TUOfd-fQoGG4KGPG7eWpJlX0Pe7vkwUlYxnyzFcvD18xsngJKRoW1dj5FGaJCqdc6hT17XYHQWPiravMfp1585W0JfJct1YnVuM-X7d47RBy5d76L8IeVoZlmRsNGTu8YPVGUWG0mcR6RqbAAZbbuo2-_TUgvtzwpFdKVmiabES6LnbTehN9oarwoLIA8pcGSKS1UiIcF824xIoSVkfkkZOA8mw5sailKJEH5AVPJKwlPAwaP4Q-A2IxKu3ul1kmK0XsH0pg"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Pizza</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Burgers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Juicy beef burger" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4FSs8Av0-Uj9MFg9tHCJMFu7UVSbJEJUeJah5Q10rVaWupI0xEMR_7eDrTyCEWPYYH7TzhItmLWS_Kr73sDQdHWUEdks2Y8QZ4NIKPNEfRuscgj4yKmDexRJgIus9K--RTMouj__V9iQymlY-9lbtB5XwcV9jKvYRVooKTNY1mijtyiyGNuAfyNLITD56TFKQWq_nQaFuvwKzK2pwC09RlbrMJPPiqIpU0NdgbuWZfwU4VkiyrBxIJtEI7OvTT3lu8mWrsjlw7A"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Burgers</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Sushi" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Fresh sushi rolls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTMWlMe95peWyy6QccIMNz3t5d4o1HF7ZbgO910ptQf62j4UkLf9_3hm9iJra8F8mncBP9C4s7DsMTomZMsALshKCCvU9VEMU9mNG_MXFCNRgAwIQ8EkOypIR3Zqf-8liXIQiOri2uFoN8ZmvHH8G2UFCuR6KeckKG336RDJqTJtQAQqubdMtawEzEOuzVyXuFVjmDP7FnkQxCtvTJrqlPgCg_3qa1CXxvJUSYqVbEVuNPbQ5vlT-rDMxEqgUlsGWqeF_5ncT79Q"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Sushi</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Asian" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Bowl of noodles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7T4jAuwrCyu3Is5Yhi2JuTEnt4Srlj9CrHhIQe0uYmPpnQB3CjF0svPV-BwzcKeIyRPNqJHTzbRgWMvoYZkcHVgnwnlcdgwjxnBljXGoniYJ54udw_R0a_ct0kAQG_OTu0TC5g9QRflK-QRqyXmfQaOAJb3BGXbb_Mt359wENRypj0mB83j0iLVfiuoJs5VKoVfHGhqdU6TO6rJ3cxDAF9m7qkS49ilEvoArBVuWu4JfohuwyHzhmiAfiY5fUPkAidv61AoeMUw"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Asian</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Vegan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Healthy salad bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdxCE-Dc7zKrRWMvNfIxPowJBEmc869whcHEl1ghnUxo2u1lmnd8FxnMWakKz2wKa90_Ek2teCo-3CsjaPKiJ8GfnEEA3xf0-Z8GX6Wbu3VJHSfrtrvDh5J52F7PhL9UBRfDQBnQcQwAxK2CiYkK4Q_J9WZnN-zYYuYRGgKd6xVxZNAPiBkreQJV2iBxj-_4EJ7H_L--tK7MgfvAmcis30N3iF0ErsSLNLZhiXJLUnmZxBGtq1U0QQUC14qirLf1gctCJ0xrCW-g"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Vegan</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Dessert" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Chocolate cake slice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEFURYVy-oVGgbOrYmNw5MflDFigDSbTDIxL4fejOFVI-umUhyYjzGFiA7KuJOUqjS1H-JaHr4Cuucs2E8qov4ge3owuJOUh6zussJJS_7Ya8FyHRo7C7BETnmSg2QESC9lVj6YiKpha2HhvFZw0k1xCxVjuFISZ0LuJlk6Ve7QMANAsYHLLXLacJ7L7XJj6hvpmzYsrx2F3RlJORfAqBK2Am9mSGu6dTBwxmmcdVQmkNTwcEiH3zpNhKh1jIGfbb8vJUyYIXfIQ"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Dessert</span>
+</a>
+<a class="group flex flex-col items-center gap-4 min-w-[110px] cursor-pointer" href="#">
+<div class="size-24 sm:size-28 rounded-[24px] bg-surface-dark border border-white/5 flex items-center justify-center overflow-hidden relative shadow-lg group-hover:shadow-primary/20 transition-all duration-300 group-hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10"></div>
+<img alt="Drinks" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Refreshing fruit cocktails" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_v5naktTevjpatAei1mDLUUxvhVS437Zb6BXwK5Y-itw8qNrgUCnJtA-mfJj0Z4xeEaf3lOzvvIHERbcNrHZA-forow7PDOmcQmB4V1v4HJcwnj5DOevHMQYDmmJJpQRJHG4_6ktEobI-SFkdIQ8KmpnqYrHNs_tvx0l3KL_X7PZbYGWh_xGficF8LtYhPLx2bAkiX2geLrYN3KgHLSOoxmA8PyAolAYGUZoEr0gN4ssouse-bBeScP2fKd2mKWMJBLqeX4dicA"/>
+</div>
+<span class="text-base font-bold text-text-secondary group-hover:text-primary transition-colors">Drinks</span>
+</a>
+</div>
+</div>
+<div class="w-full max-w-[1440px] px-4 md:px-8 py-8 pb-24">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-white text-3xl font-bold tracking-tight">Popular Near You</h2>
+<p class="text-text-secondary text-base mt-2">Based on recent orders in your area</p>
+</div>
+<a class="text-primary font-bold text-sm hover:text-white transition-colors flex items-center group" href="#">
+                    See All <span class="material-symbols-outlined text-lg ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+<div class="group bg-surface-dark rounded-[24px] overflow-hidden hover:shadow-soft-deep transition-all duration-300 flex flex-col h-full border border-white/5 hover:border-primary/30 relative">
+<div class="relative h-56 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Burger Joint" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Double cheeseburger with fries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDZNuvlr8-dCRpLVO3yr-XljgJKxZhJS6A5JcDOY1-55oPozSiVByuX3U_FDnRimLXxwRGGVK4anihW9Rgxe8Hf0Z1lzZEr-Bkim3dPSFhAoxRUUwTnMl5AUvx8sAJb1jH_EXIq5x80YefxvyRueSz_1AkUT1-7xWo9jVlmxnlDAo06M95nnZ08uf_sZkuym3jvbbVusN2MQarS8KuBExp-996LzsfOCr9tp00FeKogc6MbzJFicW4K7X0yBaLQKM3QGmdey0oiQ"/>
+<div class="absolute top-4 right-4 z-20">
+<button class="bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary hover:text-white text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] block filled-icon">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 z-20 flex gap-2">
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+                                20-30 min
+                            </div>
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] filled-icon">star</span>
+                                4.8
+                            </div>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors truncate">The Burger Joint</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">American • Burgers • Fast Food</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-text-secondary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span class="text-white">$1.99 Delivery</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-white/20 rounded-full"></span>
+<span>$15 min</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-dark rounded-[24px] overflow-hidden hover:shadow-soft-deep transition-all duration-300 flex flex-col h-full border border-white/5 hover:border-primary/30 relative">
+<div class="relative h-56 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Sushi Master" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Sushi platter assortment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp8tG6BAwA2eZdBPYXGtTEajW5uUEZVtobFhwmjSXANjuBnvaGqGUfGB5irWX5whtjlapz-ujdpKEmQLnNxTBJWK_bwttgJ9v-vPmxBXTjgvpPQ0E7n7zlnVeqi7jrpiWVHO5Lo-mOkc7vr3B9jt5cfehzcwpoISBJzxchxiPswt2BzqWzqLD3AfULBUG1EA55NV_BWSh12P5mkm9rjxxlZqpG7uu38Z2F1L0qZHQvvgMKp9gaMyb1nGjlWjTZ5jlvCSLnkMPXvA"/>
+<div class="absolute top-4 right-4 z-20">
+<button class="bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary hover:text-white text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] block">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 z-20 flex gap-2">
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+                                45-55 min
+                            </div>
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] filled-icon">star</span>
+                                4.9
+                            </div>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors truncate">Sushi Master</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">Japanese • Sushi • Seafood</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-text-secondary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span class="text-primary font-bold">Free Delivery</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-white/20 rounded-full"></span>
+<span>$25 min</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-dark rounded-[24px] overflow-hidden hover:shadow-soft-deep transition-all duration-300 flex flex-col h-full border border-white/5 hover:border-primary/30 relative">
+<div class="relative h-56 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Pizza Paradise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="New York style pizza" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxXw-DCt7yplp3bRuxFjEcQFt4N0kqwrr7f7_zezRunQPMC2TJ9viqI0ufJfmvIBFZrG2lfO4tTMD28U7USpUxl8jg9GqGtiDUjfboe08Qb_ELItFz449BdRApBLgTdiQDvznVKdKIP1NP_wkAeG4sIqMCFhzPGzmPv7dz71oxPMy_NS7iaPy7L-UT3XGIeH_Bpu5jfAFXRmw2AMFv1AYtJlhB-KYMdqgIn_ZSyZIKhZBatBFUkkXAt70CfWGO_-jsA71o0li5WA"/>
+<div class="absolute top-4 right-4 z-20">
+<button class="bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary hover:text-white text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] block">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 z-20 flex gap-2">
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+                                30-40 min
+                            </div>
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] filled-icon">star</span>
+                                4.5
+                            </div>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors truncate">Pizza Paradise</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">Italian • Pizza • Comfort Food</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-text-secondary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span class="text-white">$3.99 Delivery</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-white/20 rounded-full"></span>
+<span>$20 min</span>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-dark rounded-[24px] overflow-hidden hover:shadow-soft-deep transition-all duration-300 flex flex-col h-full border border-white/5 hover:border-primary/30 relative">
+<div class="relative h-56 w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img alt="Green Bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Fresh salad bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXTZjVBimBPDGbiqlvVlUM7dr611MWS7eFXT8YZevYWXxdIpJCJzbDeUA5gkSZxk3KleuFWnl6n5tc3rqtvOpvjL57Zd6yHlI9B1-OoqMlMBhkLmVfbwFnaGjNzdDeeqAOdfegyeNd0X7_pPzD1xC9z7AdqjO4zcPtjosyoOUVjHOBolHsf-UfwwNGI_ht0RgaHbaK_F2EgIMKx3b6oEXwgwQ1oTqfkBiBBXC04IBSsGsDl7qNJoTYjxLVGpPrHAgrLbdQ2pxosA"/>
+<div class="absolute top-4 right-4 z-20">
+<button class="bg-black/40 backdrop-blur-md p-2 rounded-full hover:bg-primary hover:text-white text-white transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] block">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 z-20 flex gap-2">
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+                                15-25 min
+                            </div>
+<div class="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-black flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] filled-icon">star</span>
+                                4.7
+                            </div>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors truncate">Green Bowl</h3>
+</div>
+<p class="text-text-secondary text-sm mb-4">Healthy • Salads • Vegan</p>
+<div class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between text-xs font-medium text-text-secondary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">local_shipping</span>
+<span class="text-white">$0.99 Delivery</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-1.5 bg-white/20 rounded-full"></span>
+<span>$12 min</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

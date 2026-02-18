@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Secure Checkout - FoodApp</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#121212", // Deep charcoal/black
+                        "surface-dark": "#1E1E1E", // Lighter grey for cards
+                        "border-dark": "#333333",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased min-h-screen flex flex-col">
+<!-- Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark bg-white dark:bg-[#181411] px-6 lg:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_535)">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</g>
+<defs>
+<clippath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">FoodApp</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Restaurants</a>
+<a class="text-slate-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Orders</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Sign Out</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB119jZ7GaUyApz4dUBdT0zCVl4rLLeEyhIGJVTvKs-0oQMFHuVEOKxd8vuvKKg7NRcGl-JpUZeRH9YS67NgET15b-5d0OD5YoftGkLp4mY_taUCOu8qY4C4fwFBp0GqccxiuDMIZ1XxrqHv4AGMLLtNzSyJc1M_Q0vTNrc7lcnkAkZSk-RxAXy2yDolc9DzT2vAou8y3BLVsRAUYVozyLWpswJ2FOJPKQ19mSTlTkvxXhu3LI0u98a3hiD7lBtoLtYqUvWnOK0jg");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full px-4 sm:px-6 lg:px-40 py-8 lg:py-12">
+<div class="max-w-7xl mx-auto">
+<!-- Page Title -->
+<div class="flex flex-col gap-2 mb-8">
+<div class="flex items-center gap-2 text-primary text-sm font-medium">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+<a class="hover:underline" href="#">Back to Cart</a>
+</div>
+<h1 class="text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]">Secure Checkout</h1>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Left Column: Input Flow -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Section 1: Delivery Details -->
+<section class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-gray-100 dark:border-border-dark">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary text-white text-sm">1</span>
+                                Delivery Address
+                            </h2>
+<button class="text-primary text-sm font-bold hover:text-primary/80">Change Address</button>
+</div>
+<div class="flex flex-col sm:flex-row gap-5">
+<!-- Map Preview -->
+<div class="w-full sm:w-1/3 aspect-video sm:aspect-square rounded-lg overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="Dark stylized map preview of city streets" data-location="New York" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8nwnJTn7hlqio4C7tbbHOF8Obsq1aoC5wZzi_O0V9-8mnST9j5tR_8LrNEmR3E7hvvBvXPFc7ACTi3XiLpJLsS9qmuivZTMaYVwOi-M6vBYtQMS8U3ZiS4nhkmd21tljmuyMq9mv63fu2iy5JHiSmro2f7k2MKeARu4Y1KNNZBQzUmb0srme_1Mz_q82VmZVnaiYHNOdTeSHWDx-0heDQ7DRo5eg0x1gHRrOIpLU9KNJyGLyobhYu4sQMZnlj3zdmIev7Rl7Ftw');">
+</div>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-lg">location_on</span>
+</div>
+</div>
+<!-- Address Info -->
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-gray-400">home</span>
+<span class="text-sm font-bold text-gray-500 uppercase tracking-wider">Home</span>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">123 Main Street, Apt 4B</h3>
+<p class="text-slate-500 dark:text-gray-400 text-sm mb-4">New York, NY 10001</p>
+<div class="flex gap-3">
+<div class="px-3 py-1 rounded bg-gray-100 dark:bg-background-dark text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-border-dark">
+                                        Gate Code: #4092
+                                    </div>
+<div class="px-3 py-1 rounded bg-gray-100 dark:bg-background-dark text-xs font-medium text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-border-dark">
+                                        Leave at door
+                                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Payment Method -->
+<section class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-gray-100 dark:border-border-dark">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary text-white text-sm">2</span>
+                                Payment Method
+                            </h2>
+<span class="flex items-center gap-1 text-xs text-green-500 font-medium bg-green-500/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-sm">lock</span>
+                                SSL Secure
+                            </span>
+</div>
+<!-- Wallet Toggle -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-background-dark border border-gray-200 dark:border-border-dark mb-6">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-bold text-sm">Use Wallet Balance</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Available: <span class="text-primary font-bold">$45.50</span></p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Payment Options -->
+<div class="space-y-3">
+<!-- Paystack Option -->
+<label class="flex items-center p-4 border-2 border-primary bg-primary/5 rounded-lg cursor-pointer transition-all">
+<input checked="" class="w-5 h-5 text-primary border-gray-300 focus:ring-primary dark:bg-gray-700 dark:border-gray-600" name="payment" type="radio"/>
+<div class="ml-4 flex-1 flex items-center justify-between">
+<span class="font-bold text-slate-900 dark:text-white">Pay with Card</span>
+<div class="flex items-center gap-2 opacity-80">
+<img alt="Mastercard" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhVYPQWKBP1r1-e3saVGYXjIx65ZeA6NPhFc3r1_11k2jWoE25-wCpm-NeDrfc_abtmmuNDXxMvTAZ385UwAVzXWXatop5tjW43nYTv0Z67GYbD0ydvDMG9oXqi0TxtKvSA60ZQq9rWUDRG0cEIitOJnQp41P-AHCOVilrmnLKvhdAdsAi79mqWr5HZ4Be638iO7XD5az6Hw9qgvmlVgl2DlwhnYPl7QdjOqyCLz6SqWFm2p3gnr6ALfuyEXNWH8dbbi8InjwrnA"/>
+<img alt="Visa" class="h-4 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAODxP28qazcJm_zW2EURZqpYxHf2QSpgzopv5A4He02xmYUDujGvbabbhJKw4xo5Sjbs8HeT904YYIBuS6gzDI8o1BCU_VerRght2owvvgw2t-tLtEhd_A2CQXcCCiS8Ed5Q4b8tK-jaPdaPbnIo4yGeUX-qaMgKEb3durdPAq__8DbX5-VrNyCdBRBKmVfNl1knu0zHLQSIaZ1hg1CN8XIkZhasxnMLgqkvE8rzIFZTGoOnd834_VGQUtV_l7WULM5f9SosZp7A"/>
+</div>
+</div>
+</label>
+<!-- Other Option (Visual only) -->
+<label class="flex items-center p-4 border border-gray-200 dark:border-border-dark rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-background-dark transition-all">
+<input class="w-5 h-5 text-primary border-gray-300 focus:ring-primary dark:bg-gray-700 dark:border-gray-600" name="payment" type="radio"/>
+<div class="ml-4 flex-1">
+<span class="font-medium text-slate-900 dark:text-white">Cash on Delivery</span>
+</div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary (Sticky) -->
+<div class="lg:col-span-5 relative">
+<div class="sticky top-24">
+<div class="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-lg border border-gray-100 dark:border-border-dark">
+<h2 class="text-xl font-bold mb-6 pb-4 border-b border-gray-100 dark:border-border-dark">Order Summary</h2>
+<!-- Items List -->
+<div class="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-gray-100 dark:bg-background-dark overflow-hidden shrink-0">
+<img alt="Juicy beef burger with cheese and lettuce" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdMHlTbuZixMuyNnNGacq6kP2tvAduEl_xcswvJyvi_ux7ghZhDA2xam_PS7d-JEbXORvjRDrODvwHIvvkKdCVC47sEQtSqbhJzqzPlq4K2t27FYd2T2OFx7gBN6aIK3y6yHejcTCp4Za__n2GDX9Xs7Thuz4HknB2Y0paH5h17gud8gdgdqKB_9ndvcr9oy2hnZOLgYBi1MfeXOayWcH3WEnLcbhRPQutZM6i4C6ZU0vWAAeVDXXOYor8qhYFwqZaARd2yTk5-Q"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-sm leading-tight">Double Cheese Burger</h4>
+<span class="font-bold text-sm">$24.00</span>
+</div>
+<p class="text-xs text-gray-500 mt-1">Extra Cheese, No Onion</p>
+<div class="mt-2 text-xs font-medium bg-gray-100 dark:bg-background-dark inline-block px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">
+                                            Qty: 2
+                                        </div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-gray-100 dark:bg-background-dark overflow-hidden shrink-0">
+<img alt="Crispy golden french fries in a basket" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkef8_aZ5QcAvT8xWkb4CgZJEhpab4DD33nAiZT1ci8W2l4XQOQ8Pfyf2M7hH6Ez6kLt1Ha_FCkD5ThsOiczimN-K3Zt7dS-_gx7yQAtZLXcNUv9MNyMQIskU2rUVfg5wwSlts-8M_i72WizciVV2PCEe3IuWwCqG0k5w2FTkyPWyD8FWoMPW0DW8EsC0BLBs2LXQI312UM8UUhDmpl8QuS0up77HBBumBNb2FKe0C7ycMKPu4hV7pieJYywrAyvQ-70v9ZmydpQ"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-sm leading-tight">Crispy French Fries</h4>
+<span class="font-bold text-sm">$4.50</span>
+</div>
+<p class="text-xs text-gray-500 mt-1">Large Size</p>
+<div class="mt-2 text-xs font-medium bg-gray-100 dark:bg-background-dark inline-block px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">
+                                            Qty: 1
+                                        </div>
+</div>
+</div>
+</div>
+<!-- Cost Breakdown -->
+<div class="space-y-3 py-4 border-t border-gray-100 dark:border-border-dark text-sm">
+<div class="flex justify-between text-gray-600 dark:text-gray-400">
+<span>Subtotal</span>
+<span class="font-medium text-slate-900 dark:text-white">$28.50</span>
+</div>
+<div class="flex justify-between text-gray-600 dark:text-gray-400">
+<span>Delivery Fee</span>
+<span class="font-medium text-slate-900 dark:text-white">$3.50</span>
+</div>
+<div class="flex justify-between text-gray-600 dark:text-gray-400">
+<span>Tax (5%)</span>
+<span class="font-medium text-slate-900 dark:text-white">$1.42</span>
+</div>
+<div class="flex justify-between text-green-600 dark:text-green-500">
+<span>Discount (Welcome)</span>
+<span class="font-medium">-$2.00</span>
+</div>
+</div>
+<!-- Total -->
+<div class="flex justify-between items-center py-4 border-t border-gray-100 dark:border-border-dark mt-2">
+<span class="text-base font-bold text-gray-500 dark:text-gray-400">Total to pay</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white">$31.42</span>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-orange-600 text-[#181411] font-bold text-lg py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-orange-500/20 active:scale-[0.98] flex items-center justify-center gap-2 mt-2">
+                                Place Order
+                                <span class="material-symbols-outlined font-bold">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-gray-400 mt-4 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                                100% Secure Payment processing
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="border-t border-gray-200 dark:border-border-dark bg-white dark:bg-[#181411] py-8 mt-auto">
+<div class="max-w-7xl mx-auto px-6 lg:px-40 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-gray-500 dark:text-gray-400">© 2023 FoodApp Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<style>
+        /* Custom scrollbar for order list */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #333;
+            border-radius: 20px;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Foodie - Shopping Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#121212", 
+                        "charcoal": "#1E1E1E",
+                        "card-bg": "#2C2C2C",
+                        "surface": "#252525"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "3xl": "2.5rem", "full": "9999px"},
+                    boxShadow: {
+                        "deep": "0 20px 40px -10px rgba(0, 0, 0, 0.6)",
+                        "glow": "0 0 20px rgba(244, 123, 37, 0.3)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392f28;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f47b25;
+        }
+    </style>
+</head>
+<body class="bg-[#121212] font-display antialiased min-h-screen flex flex-col text-[#e0e0e0]">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2C2C2C] bg-[#121212]/95 backdrop-blur px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-10 text-primary bg-[#2C2C2C] rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined !text-2xl">restaurant</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">Foodie</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#9e9e9e] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-[#9e9e9e] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Menu</a>
+<a class="text-[#9e9e9e] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Orders</a>
+<a class="text-white text-sm font-bold leading-normal relative" href="#">
+                    Cart
+                    <span class="absolute -top-2 -right-3 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white font-bold">3</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full ring-1 ring-[#2C2C2C] focus-within:ring-primary transition-all bg-[#1E1E1E]">
+<div class="text-[#9e9e9e] flex border-none items-center justify-center pl-4 border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-full text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-[#9e9e9e] px-4 pl-2 text-sm font-normal leading-normal" placeholder="Search menu..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20 cursor-pointer hover:ring-primary transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkFdwd19YHZan4vM26CiSNogdcB2a4ITAIRHoOsGuYbW-lwxDOoEHYuiB9kLyPDQ2JkHiuETuvR1GPvuQeeQftJxj4fsgGObznK8rYhlPeAh2P5qhQCWluSvQOFOPmAOoFYODEquHiOyDW6cAkCE6YYzQLoZOpszhWQObpQ4HMU8JUltQa6Hi48U4cnZzdAlvUOE6qWkoBMmIpy0xEnbI3fVxm1E9xEsPRaQgU2f6KfM0B69QidmWFw8EDSmil8ZJz-G3Fj1WwmQ");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow layout-container flex flex-col">
+<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<h1 class="text-white text-3xl md:text-4xl font-extrabold leading-tight tracking-[-0.033em] mb-8">Your Cart <span class="text-[#9e9e9e] text-2xl font-medium ml-2">(3 items)</span></h1>
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-16 relative">
+<div class="flex-1 flex flex-col gap-5 p-6 rounded-3xl bg-[#1E1E1E] border border-[#2C2C2C]">
+<div class="flex flex-col sm:flex-row gap-5 bg-[#2C2C2C] p-5 rounded-2xl border border-transparent hover:border-primary/50 transition-all group shadow-sm">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-[110px] shrink-0 shadow-lg" data-alt="Spicy Chicken Burger with lettuce and tomato" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEfm3tlcoQNU3VBEzJUlcLMe45u77-aBjBKTLxcDFhyKCID_advqOZ8L6J3UrObOfjWzvepnEhnHDsql2gXMcGxUyWkMt_6h1WxOtjPwS4LiXfM8fFBmkwiJtS_vbEui7SwsTPn4FVzwnKPHsRmSEYisIAWs9KXhB2rCSXSaoDVpw7kC-AgZS6fcIID8oofC4schjyw8EbhUd2kpBKn1E0A_RJH-1Wa3q06sNzeOPNkWgMu0VBIEh7o8_-j7cOig0jX6-jrWqxZw");'></div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start w-full gap-4">
+<div>
+<h3 class="text-white text-xl font-bold leading-tight">Spicy Chicken Burger</h3>
+<p class="text-[#9e9e9e] text-sm font-medium mt-1.5 flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-primary/70 inline-block"></span>
+                                            Extra cheese, No onions
+                                        </p>
+</div>
+<button aria-label="Remove item" class="text-[#9e9e9e] hover:text-red-400 transition-colors p-2 rounded-full hover:bg-[#3E3E3E] group-hover:opacity-100 opacity-70">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-4 sm:mt-0">
+<p class="text-white text-xl font-bold leading-normal">$12.99</p>
+<div class="flex items-center bg-[#1E1E1E] rounded-xl p-1.5 border border-[#3E3E3E]">
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#2C2C2C] text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<input class="w-10 bg-transparent text-center text-white font-bold focus:outline-none" readonly="" type="text" value="1"/>
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#3E3E3E] text-white hover:bg-primary hover:text-white transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 bg-[#2C2C2C] p-5 rounded-2xl border border-transparent hover:border-primary/50 transition-all group shadow-sm">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-[110px] shrink-0 shadow-lg" data-alt="Large bucket of french fries" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWJlv8mwJThbN8XyjM4cIsYa0-Yw3MjuW3fzY3kKTOuDpxoCkRSD16ymG6QpL9Od1QbMC-diIF6vJnSX8iGjWkdkmcFiiSXAZ4D10MNinIyQeLdeaAmBUOYt417_l3swnnSuj85767xDkGy2PZ5pJ6UN_tyOKdJ-uKXgY-D23k7OypDnRNguq-QdQHs287myqFcgHhFoab9rheAttdgm8QV_7x1NllHTXEKRfkN-nefQuLUARyS5ASjkr_zqD6KXSHfBvmE2n7DA");'></div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start w-full gap-4">
+<div>
+<h3 class="text-white text-xl font-bold leading-tight">Large Fries</h3>
+<p class="text-[#9e9e9e] text-sm font-medium mt-1.5 flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-primary/70 inline-block"></span>
+                                            Classic salt, Ketchup packet
+                                        </p>
+</div>
+<button aria-label="Remove item" class="text-[#9e9e9e] hover:text-red-400 transition-colors p-2 rounded-full hover:bg-[#3E3E3E] group-hover:opacity-100 opacity-70">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-4 sm:mt-0">
+<p class="text-white text-xl font-bold leading-normal">$9.00</p>
+<div class="flex items-center bg-[#1E1E1E] rounded-xl p-1.5 border border-[#3E3E3E]">
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#2C2C2C] text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<input class="w-10 bg-transparent text-center text-white font-bold focus:outline-none" readonly="" type="text" value="2"/>
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#3E3E3E] text-white hover:bg-primary hover:text-white transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-5 bg-[#2C2C2C] p-5 rounded-2xl border border-transparent hover:border-primary/50 transition-all group shadow-sm">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl size-[110px] shrink-0 shadow-lg" data-alt="Can of Coca Cola Zero" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHQ2VMKFkdkjVQPzKusTNYVeNVOcCrmeUgIrzz8zkSDEDPIH7uUAGWIOH9XwTSTuveIi1l0a7aZr6JkYJSWko-qJ6dmkc4awUJeQWAhfzseAp7DESBznGTMFl82WpjYdkPGEMj1t-SJTSBHCJShs40DeYyKb1x-84hPgmhsiORvIY3hcuEZ6wdLxScNPEpsMYzBc8f2ogZGy17KuOHislxsshrjq0TLyWzh4Z-9j6675ahNH7_HV94CU54kVWcbhKxpgOvdsLxlw");'></div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start w-full gap-4">
+<div>
+<h3 class="text-white text-xl font-bold leading-tight">Coke Zero</h3>
+<p class="text-[#9e9e9e] text-sm font-medium mt-1.5 flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-primary/70 inline-block"></span>
+                                            330ml can
+                                        </p>
+</div>
+<button aria-label="Remove item" class="text-[#9e9e9e] hover:text-red-400 transition-colors p-2 rounded-full hover:bg-[#3E3E3E] group-hover:opacity-100 opacity-70">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+<div class="flex justify-between items-end mt-4 sm:mt-0">
+<p class="text-white text-xl font-bold leading-normal">$1.50</p>
+<div class="flex items-center bg-[#1E1E1E] rounded-xl p-1.5 border border-[#3E3E3E]">
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#2C2C2C] text-white hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">remove</span>
+</button>
+<input class="w-10 bg-transparent text-center text-white font-bold focus:outline-none" readonly="" type="text" value="1"/>
+<button class="size-8 flex items-center justify-center rounded-lg bg-[#3E3E3E] text-white hover:bg-primary hover:text-white transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 p-4 border border-dashed border-[#3E3E3E] rounded-2xl flex items-center justify-center text-[#9e9e9e] hover:text-white hover:border-primary hover:bg-[#2C2C2C]/50 cursor-pointer transition-all gap-2 h-[80px]">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-bold">Add more items</span>
+</div>
+</div>
+<div class="lg:w-[400px] shrink-0">
+<div class="lg:sticky lg:top-28 flex flex-col gap-6 bg-[#1E1E1E] p-8 rounded-[2rem] border border-[#2C2C2C] shadow-deep">
+<h2 class="text-white text-2xl font-black tracking-tight">Order Summary</h2>
+<div class="flex gap-2">
+<div class="relative flex-1 group">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-[#9e9e9e] group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">sell</span>
+</div>
+<input class="w-full bg-[#2C2C2C] border border-transparent text-white text-sm rounded-xl focus:ring-1 focus:ring-primary focus:border-primary focus:bg-[#252525] block pl-10 p-3.5 placeholder-[#6b5d54] transition-all" placeholder="Promo Code" type="text"/>
+</div>
+<button class="bg-[#2C2C2C] hover:bg-[#3E3E3E] text-white font-bold rounded-xl text-sm px-5 py-2 transition-colors border border-transparent hover:border-[#4E4E4E]">
+                                    Apply
+                                </button>
+</div>
+<hr class="border-[#2C2C2C]"/>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center text-[#9e9e9e]">
+<span class="text-sm font-medium">Subtotal</span>
+<span class="text-white font-bold">$23.49</span>
+</div>
+<div class="flex justify-between items-center text-[#9e9e9e]">
+<span class="text-sm font-medium">Delivery Fee</span>
+<span class="text-white font-bold">$2.99</span>
+</div>
+<div class="flex justify-between items-center text-[#9e9e9e]">
+<span class="text-sm font-medium">Service Fee</span>
+<span class="text-white font-bold">$1.50</span>
+</div>
+<div class="flex justify-between items-center text-green-400 text-sm bg-green-900/10 p-2 rounded-lg -mx-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">check_circle</span> Discount (SUMMER5)</span>
+<span class="font-bold">-$3.00</span>
+</div>
+</div>
+<hr class="border-[#2C2C2C]"/>
+<div class="flex justify-between items-end">
+<span class="text-white text-lg font-bold">Total</span>
+<div class="text-right">
+<span class="text-[#9e9e9e] text-xs font-normal line-through mr-2">$27.98</span>
+<span class="text-primary text-3xl font-black tracking-tight">$24.98</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-[#ff8c3b] text-white font-bold text-lg py-4 px-6 rounded-2xl transition-all transform active:scale-[0.98] shadow-glow flex items-center justify-between group mt-2">
+<span class="flex flex-col items-start">
+<span class="text-xs font-medium opacity-80">Checkout</span>
+<span class="leading-none">$24.98</span>
+</span>
+<div class="bg-white/20 p-2 rounded-xl group-hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined block">arrow_forward</span>
+</div>
+</button>
+<div class="text-center px-4">
+<p class="text-[10px] text-[#6b5d54] uppercase tracking-wider font-bold">
+                                    Secure Checkout
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

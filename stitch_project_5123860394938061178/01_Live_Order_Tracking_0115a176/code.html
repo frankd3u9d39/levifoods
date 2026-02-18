@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Order Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark mode feeling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221710;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392f28;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #54453b;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 py-4 lg:px-10 bg-background-dark">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">local_pizza</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">FoodDelivery</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-center gap-8">
+<a class="text-white/70 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Home</a>
+<a class="text-white text-sm font-medium leading-normal" href="#">Orders</a>
+<a class="text-white/70 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Profile</a>
+<a class="text-white/70 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Help</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-white/10 hover:bg-white/20 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Sign Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white/10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqqhx9ln6FLFUp8oms1pQ46b5XnXgWOWU80KuEQNxVtOixmVi_QPI5Qh8cbVNqEQwc_rmaXfWjnPEZVTJQcJ6WGMfoqLECKGs-0paBeottXJZA3wTKG5yT7999UeX8BCB4tgXIn2r4DeAVidiJcgZ-fRgk0CRoO8okkCTlqRFeLYGILFCKHx8sUOXH-RxtG8-P8YgK2Mxr85r1uqH7R1RhSa8g2Btj8n6ewZdRn5qjinL-j5AvK8LLr0xWLvkTzO52FqlaCYyVuQ");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col lg:flex-row gap-6 p-4 lg:p-8 max-w-[1600px] mx-auto w-full">
+<!-- Left Column: Status & Details -->
+<div class="flex flex-col gap-6 w-full lg:w-1/3 lg:min-w-[400px]">
+<!-- Header Status -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-sm font-bold uppercase tracking-wider">Estimated Arrival</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+                    15-20 <span class="text-white/50 text-3xl lg:text-4xl">mins</span>
+</h1>
+<p class="text-white/60 text-base">Order #2491 • Preparing your feast</p>
+</div>
+<!-- Stepper -->
+<div class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col gap-8 relative overflow-hidden">
+<!-- Progress Line Background -->
+<div class="absolute left-9 top-8 bottom-8 w-0.5 bg-white/10"></div>
+<!-- Step 1: Completed -->
+<div class="flex gap-4 relative z-10">
+<div class="flex flex-col items-center">
+<div class="size-6 rounded-full bg-primary flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-white font-bold text-sm">Order Confirmed</p>
+<p class="text-white/50 text-xs">10:23 AM</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="flex gap-4 relative z-10">
+<div class="flex flex-col items-center">
+<div class="size-6 rounded-full bg-primary ring-4 ring-primary/20 flex items-center justify-center">
+<div class="size-2 bg-white rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-white font-bold text-sm">Preparing</p>
+<p class="text-primary text-xs font-medium">Kitchen is working on it</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex gap-4 relative z-10 opacity-50">
+<div class="flex flex-col items-center">
+<div class="size-6 rounded-full border-2 border-white/20 bg-background-dark flex items-center justify-center"></div>
+</div>
+<div class="flex flex-col">
+<p class="text-white font-medium text-sm">Out for Delivery</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex gap-4 relative z-10 opacity-50">
+<div class="flex flex-col items-center">
+<div class="size-6 rounded-full border-2 border-white/20 bg-background-dark flex items-center justify-center"></div>
+</div>
+<div class="flex flex-col">
+<p class="text-white font-medium text-sm">Delivered</p>
+</div>
+</div>
+</div>
+<!-- Order Summary Collapsible -->
+<div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+<details class="group">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors list-none">
+<div class="flex items-center gap-3">
+<div class="bg-white/10 p-2 rounded-lg text-white">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Order Summary</p>
+<p class="text-white/50 text-xs">3 Items • $42.50</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-white/50 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 border-t border-white/10 pt-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="bg-white/10 size-6 flex items-center justify-center rounded text-xs font-bold text-primary">1x</div>
+<div class="text-sm text-white/80">Spicy Miso Ramen</div>
+</div>
+<span class="text-sm text-white font-medium">$16.00</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="bg-white/10 size-6 flex items-center justify-center rounded text-xs font-bold text-primary">1x</div>
+<div class="text-sm text-white/80">Gyoza (6pcs)</div>
+</div>
+<span class="text-sm text-white font-medium">$8.50</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex gap-3">
+<div class="bg-white/10 size-6 flex items-center justify-center rounded text-xs font-bold text-primary">2x</div>
+<div class="text-sm text-white/80">Green Tea</div>
+</div>
+<span class="text-sm text-white font-medium">$6.00</span>
+</div>
+<div class="h-px bg-white/10 my-1"></div>
+<div class="flex justify-between items-center text-sm font-bold text-white">
+<span>Total</span>
+<span>$30.50</span>
+</div>
+</div>
+</details>
+</div>
+</div>
+<!-- Right Column: Map & Rider -->
+<div class="flex-1 flex flex-col gap-4 relative h-full min-h-[500px] lg:min-h-0">
+<!-- Map Container -->
+<div class="absolute inset-0 w-full h-full bg-[#1a1a1a] rounded-xl overflow-hidden border border-white/10">
+<!-- Abstract Dark Map Background -->
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="Dark stylized map of city streets at night" data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8nwnJTn7hlqio4C7tbbHOF8Obsq1aoC5wZzi_O0V9-8mnST9j5tR_8LrNEmR3E7hvvBvXPFc7ACTi3XiLpJLsS9qmuivZTMaYVwOi-M6vBYtQMS8U3ZiS4nhkmd21tljmuyMq9mv63fu2iy5JHiSmro2f7k2MKeARu4Y1KNNZBQzUmb0srme_1Mz_q82VmZVnaiYHNOdTeSHWDx-0heDQ7DRo5eg0x1gHRrOIpLU9KNJyGLyobhYu4sQMZnlj3zdmIev7Rl7Ftw'); filter: grayscale(100%) contrast(120%) brightness(60%);">
+</div>
+<!-- Map UI Overlays -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="size-10 bg-background-dark/90 backdrop-blur border border-white/10 rounded-lg text-white hover:text-primary hover:border-primary/50 transition-colors flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="size-10 bg-background-dark/90 backdrop-blur border border-white/10 rounded-lg text-white hover:text-primary hover:border-primary/50 transition-colors flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 bg-background-dark/90 backdrop-blur border border-white/10 rounded-lg text-white hover:text-primary hover:border-primary/50 transition-colors flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<!-- Simulated Route/Marker Elements (Visual only) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-primary text-background-dark px-3 py-1 rounded-full text-xs font-bold mb-2 shadow-lg whitespace-nowrap">
+                        12 min away
+                    </div>
+<div class="size-12 bg-primary rounded-full border-4 border-white/20 shadow-[0_0_30px_rgba(244,123,37,0.6)] flex items-center justify-center text-white z-10 relative">
+<span class="material-symbols-outlined">two_wheeler</span>
+<!-- Pulsing effect -->
+<div class="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></div>
+</div>
+</div>
+<!-- Destination Marker -->
+<div class="absolute bottom-1/4 left-1/3 flex flex-col items-center">
+<div class="size-8 bg-background-dark rounded-full border-2 border-white flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-sm">home</span>
+</div>
+</div>
+</div>
+<!-- Floating Rider Card (Bottom overlay on mobile, or bottom-left on desktop) -->
+<div class="absolute bottom-4 left-4 right-4 lg:right-auto lg:w-[380px] bg-background-dark/90 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-2xl flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="size-14 bg-center bg-cover rounded-full border-2 border-white/10" data-alt="Delivery rider portrait" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB__giD-l_Z5LA9tHXcqhKN02HBXIT-tOI_NUEZnWc7PBq_hgclpEQrNv-KmuQH2UCtO5tO3LeNG3wHAAho-B9d3ueq1OgQ2xazymrQDHK7IkicDk4WH0Z-PMNr7BhDK24ZpvV-NFLCsJhp7lc6w2mQrtf1-4bnYpGJkqdZO1WTUvujPvQqwelVqySZID1HtIbKvbzCHu9jQf1JdTrqgUaZcODrzA5QfBV1NTK92M_13PynTjG7SC7aNk4e6jekUmuYuvtZGTPAMg");'>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 size-4 rounded-full border-2 border-background-dark" title="Online"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-white font-bold text-lg">Mike D.</h3>
+<div class="flex items-center gap-1 bg-yellow-500/10 px-2 py-0.5 rounded text-yellow-500">
+<span class="material-symbols-outlined text-sm text-fill">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+</div>
+<p class="text-white/60 text-sm">Yamaha NMAX • AB 123 CD</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-10 px-4 bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Chat</span>
+</button>
+<button class="flex items-center justify-center gap-2 h-10 px-4 bg-white/10 hover:bg-white/20 text-white text-sm font-bold rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

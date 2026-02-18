@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Food Ordering App - Promo Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "primary-hover": "#e06915",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2e231c",
+                        "surface-dark-hover": "#3a2d24",
+                        "text-light": "#1e293b",
+                        "text-dark": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #f47b25;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #f47b25;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex flex-col">
+<nav class="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-surface-dark-hover bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md">
+<div class="px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white hidden sm:block">CraveDash <span class="text-xs font-normal opacity-70 bg-gray-100 dark:bg-white/10 px-2 py-0.5 rounded-full ml-2 align-middle">Admin</span></span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border border-gray-200 dark:border-gray-600">
+<img alt="Admin Avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeHww9H3sN6h3w7VAzR4W2I1vXZ2YQx23qvFVtZeQIx575kAWmJiJ_wLrJydt4ssKAMa-PQs1De0YvM8RjTpUO4ILQzB19pawpZrHwEeQzQzYxIUWn-rvjWg70ZmBE9sZH4ktU3YrsVKZHyUzeb-SnP6Pboxrb6qwuh7OnfbH-ILLJY4ZFq8vkOjRZi7xT0QWAxl5T3Ctn5ab7OqYUc7V3MYgGokZGKwVIMdoZhnNvBQIYHCY8OWE8XvRUk-BrM2m_-44nfdqu4A"/>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex flex-1 relative overflow-hidden">
+<aside class="w-64 hidden lg:flex flex-col border-r border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark p-4 gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">store</span>
+<span class="font-medium">Restaurants</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-medium">Users</span>
+</a>
+<div class="my-2 border-t border-gray-100 dark:border-white/10"></div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary dark:text-primary font-semibold" href="#">
+<span class="material-symbols-outlined fill-1">local_offer</span>
+<span>Promos &amp; Discounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</aside>
+<main class="flex-1 overflow-y-auto p-4 lg:p-8">
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Promo Codes</h1>
+<p class="text-gray-500 dark:text-gray-400 mt-1">Manage discount coupons and promotional campaigns.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg shadow-primary/25 transition-all active:scale-95" onclick="document.getElementById('newPromoModal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                Add New Code
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-dark-hover flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Codes</p>
+<h3 class="text-3xl font-bold text-gray-900 dark:text-white mt-1">12</h3>
+</div>
+<div class="h-12 w-12 rounded-xl bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-dark-hover flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Redeemed</p>
+<h3 class="text-3xl font-bold text-gray-900 dark:text-white mt-1">1,429</h3>
+</div>
+<div class="h-12 w-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined">confirmation_number</span>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-surface-dark-hover flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">Expiring Soon</p>
+<h3 class="text-3xl font-bold text-gray-900 dark:text-white mt-1">3</h3>
+</div>
+<div class="h-12 w-12 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+<span class="material-symbols-outlined">timelapse</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-t-2xl border-b border-gray-100 dark:border-surface-dark-hover p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-gray-50 dark:bg-surface-dark-hover/50 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-sm transition-all" placeholder="Search by code name..." type="text"/>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<select class="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark text-gray-700 dark:text-gray-300 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none">
+<option>All Status</option>
+<option>Active</option>
+<option>Expired</option>
+<option>Disabled</option>
+</select>
+<button class="p-2.5 rounded-xl border border-gray-200 dark:border-surface-dark-hover text-gray-500 hover:text-primary hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-b-2xl shadow-sm border border-gray-100 dark:border-surface-dark-hover overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 dark:bg-white/5 border-b border-gray-100 dark:border-white/5">
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Code Name</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Discount</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Usage Limit</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Expiry Date</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-center">Status</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-white/5">
+<tr class="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-bold text-gray-900 dark:text-white font-mono text-base">WELCOME50</span>
+<span class="text-xs text-gray-500">New user acquisition</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">percent</span>
+                                50% OFF
+                            </span>
+<div class="text-xs text-gray-500 mt-1">Min. order $15.00</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+<span class="text-xs">750/1000</span>
+</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+                            Oct 24, 2024
+                        </td>
+<td class="p-4 text-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:right-0 checked:border-primary transition-all duration-300" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300" for="toggle1"></label>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-bold text-gray-900 dark:text-white font-mono text-base">FREESHIP</span>
+<span class="text-xs text-gray-500">Free delivery promotion</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">attach_money</span>
+                                Fixed $5.00
+                            </span>
+<div class="text-xs text-gray-500 mt-1">Min. order $20.00</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[45%] rounded-full"></div>
+</div>
+<span class="text-xs">450/1000</span>
+</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+                            Nov 01, 2024
+                        </td>
+<td class="p-4 text-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:right-0 checked:border-primary transition-all duration-300" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer transition-colors duration-300" for="toggle2"></label>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors opacity-60">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-bold text-gray-900 dark:text-white font-mono text-base line-through">SUMMER23</span>
+<span class="text-xs text-gray-500">Seasonal campaign</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">percent</span>
+                                20% OFF
+                            </span>
+<div class="text-xs text-gray-500 mt-1">Min. order $10.00</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-gray-400 w-[100%] rounded-full"></div>
+</div>
+<span class="text-xs">2000/2000</span>
+</div>
+</td>
+<td class="p-4 text-sm text-red-500 font-medium">
+                            Expired Aug 30
+                        </td>
+<td class="p-4 text-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in pointer-events-none grayscale opacity-50">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 transition-all duration-300" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300" for="toggle3"></label>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<td class="p-4">
+<div class="flex flex-col">
+<span class="font-bold text-gray-900 dark:text-white font-mono text-base">LUNCHTIME</span>
+<span class="text-xs text-gray-500">Mid-day special</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">attach_money</span>
+                                Fixed $3.00
+                            </span>
+<div class="text-xs text-gray-500 mt-1">Min. order $12.00</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[15%] rounded-full"></div>
+</div>
+<span class="text-xs">45/300</span>
+</div>
+</td>
+<td class="p-4 text-sm text-gray-600 dark:text-gray-300">
+                            Dec 15, 2024
+                        </td>
+<td class="p-4 text-center">
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 checked:right-0 checked:border-primary transition-all duration-300" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-primary cursor-pointer transition-colors duration-300" for="toggle4"></label>
+</div>
+</td>
+<td class="p-4 text-right">
+<button class="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 flex items-center justify-between px-4">
+<span class="text-sm text-gray-500 dark:text-gray-400">Showing 1 to 4 of 12 entries</span>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded-lg border border-gray-200 dark:border-surface-dark-hover text-gray-500 disabled:opacity-50 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">Previous</button>
+<button class="px-3 py-1 rounded-lg border border-gray-200 dark:border-surface-dark-hover text-gray-500 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">Next</button>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" id="newPromoModal">
+<div class="bg-white dark:bg-surface-dark rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-fade-in-up">
+<div class="px-6 py-4 border-b border-gray-100 dark:border-surface-dark-hover flex justify-between items-center bg-gray-50 dark:bg-surface-dark-hover/30">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Add New Promo Code</h3>
+<button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors" onclick="document.getElementById('newPromoModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex flex-col gap-5">
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Promo Code Name</label>
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white placeholder-gray-400 font-mono uppercase" placeholder="e.g., SUMMER2024" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Discount Type</label>
+<select class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white">
+<option>Percentage (%)</option>
+<option>Fixed Amount ($)</option>
+</select>
+</div>
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Discount Value</label>
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white placeholder-gray-400" placeholder="20" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Min. Order Amount ($)</label>
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white placeholder-gray-400" placeholder="0.00" type="number"/>
+</div>
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Usage Limit</label>
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white placeholder-gray-400" placeholder="100" type="number"/>
+</div>
+</div>
+<div class="grid gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Expiry Date</label>
+<div class="relative">
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark-hover/50 px-4 py-3 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white placeholder-gray-400" type="date"/>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/20">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-xs text-gray-600 dark:text-gray-400">This code will automatically deactivate once the limit is reached or the date expires.</p>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-gray-100 dark:border-surface-dark-hover flex justify-end gap-3 bg-gray-50 dark:bg-surface-dark-hover/30">
+<button class="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-surface-dark-hover text-gray-600 dark:text-gray-300 font-semibold hover:bg-white dark:hover:bg-surface-dark transition-colors" onclick="document.getElementById('newPromoModal').classList.add('hidden')">Cancel</button>
+<button class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white font-semibold shadow-lg shadow-primary/25 transition-all active:scale-95">Create Promo</button>
+</div>
+</div>
+</div>
+
+</body></html>

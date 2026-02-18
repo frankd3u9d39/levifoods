@@ -1,0 +1,10 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/auth/login/page": "/auth/login",
+  "/auth/signup/page": "/auth/signup",
+  "/cart/page": "/cart",
+  "/page": "/",
+  "/restaurant/[id]/page": "/restaurant/[id]",
+  "/track/page": "/track"
+}

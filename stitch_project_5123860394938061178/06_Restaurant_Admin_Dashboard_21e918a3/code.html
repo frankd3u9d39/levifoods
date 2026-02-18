@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restaurant Admin Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "primary-hover": "#e06a1b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#181411", 
+                        "surface-card": "#27201b",
+                        "surface-hover": "#392f28",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar -->
+<aside class="flex w-72 flex-col justify-between border-r border-stone-200 dark:border-stone-800 bg-white dark:bg-surface-dark p-6 transition-all">
+<div class="flex flex-col gap-8">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center rounded-xl bg-primary/20 p-2">
+<span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Tasty Bites</h1>
+<p class="text-xs font-medium text-gray-500 dark:text-stone-400">Admin Portal</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg bg-primary/10 px-4 py-3 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="font-semibold">Dashboard</span>
+</a>
+<a class="group flex items-center gap-3 rounded-lg px-4 py-3 text-gray-500 hover:bg-stone-100 hover:text-gray-900 dark:text-stone-400 dark:hover:bg-surface-hover dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:fill-1">list_alt</span>
+<span class="font-medium">Orders</span>
+<span class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">4</span>
+</a>
+<a class="group flex items-center gap-3 rounded-lg px-4 py-3 text-gray-500 hover:bg-stone-100 hover:text-gray-900 dark:text-stone-400 dark:hover:bg-surface-hover dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:fill-1">restaurant_menu</span>
+<span class="font-medium">Menu</span>
+</a>
+<a class="group flex items-center gap-3 rounded-lg px-4 py-3 text-gray-500 hover:bg-stone-100 hover:text-gray-900 dark:text-stone-400 dark:hover:bg-surface-hover dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:fill-1">bar_chart</span>
+<span class="font-medium">Analytics</span>
+</a>
+<a class="group flex items-center gap-3 rounded-lg px-4 py-3 text-gray-500 hover:bg-stone-100 hover:text-gray-900 dark:text-stone-400 dark:hover:bg-surface-hover dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:fill-1">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<!-- User Profile -->
+<div class="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-surface-card">
+<div class="h-10 w-10 overflow-hidden rounded-full bg-stone-200">
+<img alt="Restaurant Manager" class="h-full w-full object-cover" data-alt="Portrait of a smiling restaurant manager in a white shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS4geKUHx2l2tBahi2p0AG3NCi5uZ2GTmZl0o3V9FXJ4EC4rYM-13YM2geDT26Q02TUlZqos9f4eIPG783Aw1apMmu99nAQtdDL-HhSRb0qv5Fzq_bRFzIkIwYQX1DSRTktoRv_oUJJs9LJR5pWD2tybHcWszHronorarYel6GtYvNT70vRDHOj6GZXH5QuIULF8OzC9_82n2gYmwe7XCH-WdHk4pbVYb_TnGqlwkt23h52vRzGYLOwABjuOYvcft5gpMg5N4PgA"/>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-bold text-gray-900 dark:text-white">Alex Johnson</p>
+<p class="text-xs text-gray-500 dark:text-stone-400">Manager</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-gray-600 dark:hover:text-stone-300">
+<span class="material-symbols-outlined text-xl">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-8">
+<div class="mx-auto max-w-7xl flex flex-col gap-8">
+<!-- Header -->
+<header class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col">
+<h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Dashboard Overview</h2>
+<p class="text-stone-500 dark:text-stone-400">Here's what's happening in your restaurant today.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-medium text-stone-600 shadow-sm dark:bg-surface-card dark:text-stone-300">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+<span>Oct 24, 2023</span>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-stone-600 shadow-sm hover:text-primary dark:bg-surface-card dark:text-stone-300 dark:hover:text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center gap-2 rounded-lg bg-surface-card px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-surface-hover dark:bg-surface-card dark:text-white dark:hover:bg-surface-hover">
+<span class="material-symbols-outlined text-lg">dark_mode</span>
+<span>Dark</span>
+</button>
+</div>
+</header>
+<!-- Stats Cards -->
+<div class="grid gap-6 md:grid-cols-3">
+<!-- Card 1 -->
+<div class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm dark:bg-surface-card border border-stone-100 dark:border-stone-800">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-stone-500 dark:text-stone-400">Total Revenue</p>
+<h3 class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">$1,240.50</h3>
+</div>
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm">
+<span class="flex items-center font-medium text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+                                12%
+                            </span>
+<span class="text-stone-400 dark:text-stone-500">vs yesterday</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm dark:bg-surface-card border border-stone-100 dark:border-stone-800">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-stone-500 dark:text-stone-400">Active Orders</p>
+<h3 class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">12</h3>
+</div>
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary">
+<span class="material-symbols-outlined">soup_kitchen</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm">
+<span class="flex items-center font-medium text-primary">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+                                +2
+                            </span>
+<span class="text-stone-400 dark:text-stone-500">since last hour</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm dark:bg-surface-card border border-stone-100 dark:border-stone-800">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-medium text-stone-500 dark:text-stone-400">Today's Sales</p>
+<h3 class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">45</h3>
+</div>
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2 text-sm">
+<span class="flex items-center font-medium text-red-500">
+<span class="material-symbols-outlined text-lg">trending_down</span>
+                                -5%
+                            </span>
+<span class="text-stone-400 dark:text-stone-500">vs yesterday</span>
+</div>
+</div>
+</div>
+<!-- Incoming Orders Section -->
+<div class="flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white">Incoming Orders</h3>
+<a class="text-sm font-semibold text-primary hover:text-primary-hover" href="#">View All Orders</a>
+</div>
+<div class="w-full overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm dark:border-stone-800 dark:bg-surface-card">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="border-b border-stone-200 bg-stone-50 dark:border-stone-800 dark:bg-surface-hover/50">
+<tr>
+<th class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Order ID</th>
+<th class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Customer</th>
+<th class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Items</th>
+<th class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Total</th>
+<th class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Status</th>
+<th class="px-6 py-4 text-right font-semibold text-gray-900 dark:text-white">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-stone-200 dark:divide-stone-800">
+<!-- Row 1: Pending -->
+<tr class="group hover:bg-stone-50 dark:hover:bg-surface-hover/30 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#1023</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden">
+<img alt="Customer Avatar" class="h-full w-full object-cover" data-alt="Portrait of a male customer with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgeT9_x57NzldilWMXsleSWhmGc0N9uJ9i7vzpd3ChRrzLib-peb3UMZBLpXc6iq_2PQ1RmPxrGmylaRirWHgGdwoK9xwKderbHGSEGEZ-NzAEENkM52PvicvjgPoCfqikReK4SNbeT9sQ3kLVCsNUAQYUE7Jar-RyI2SBGVjcx4q7MGPIGDqh-WTk2EfLZsS6QgvMHdiW7hE1_jwv-n4MdUegBbkfXryNxf__kPqGCWmvTxdl6k48w6e4oH9u1wGUIj_DBG3FDw"/>
+</div>
+<span>John Doe</span>
+</div>
+</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<span class="line-clamp-1">2x Burgers, 1x Fries</span>
+</td>
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">$45.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                                                Pending
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 text-stone-400 hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:border-stone-700 dark:hover:bg-red-900/20 dark:hover:text-red-400 transition-colors" title="Decline">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+<button class="flex h-8 items-center gap-2 rounded-lg bg-primary px-3 text-xs font-bold text-white shadow-sm hover:bg-primary-hover transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+                                                    Accept
+                                                </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Pending -->
+<tr class="group hover:bg-stone-50 dark:hover:bg-surface-hover/30 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#1022</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden">
+<img alt="Customer Avatar" class="h-full w-full object-cover" data-alt="Portrait of a female customer smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBJ32wmCpTIaXT9_cRnp0FB0vph3QOkS5KtWm_ASfdQ-GM7hHCSY4fa5xeMeqBZftNzUmIm0QpyYchM_XZhD30EXcOqMRbxmZUTun4TeKZOTYNrMoLfs1H20FoaM3p-6sypHX1If_YY9YYeKprLNvcl7asTYYMxv834OTxyMilQq7JCfNFNcSkDKsEv56zn0dAFiELREXR3xOsuS3TiKfGrxioWvtyf6QInVqtetJfR0JoGQaOi2uL6Zgs_iBIOUcK0YdkXzxlbg"/>
+</div>
+<span>Jane Smith</span>
+</div>
+</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<span class="line-clamp-1">1x Pizza, 2x Cokes</span>
+</td>
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">$28.50</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                                                Pending
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 text-stone-400 hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:border-stone-700 dark:hover:bg-red-900/20 dark:hover:text-red-400 transition-colors" title="Decline">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+<button class="flex h-8 items-center gap-2 rounded-lg bg-primary px-3 text-xs font-bold text-white shadow-sm hover:bg-primary-hover transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+                                                    Accept
+                                                </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Cooking -->
+<tr class="group hover:bg-stone-50 dark:hover:bg-surface-hover/30 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#1021</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden">
+<img alt="Customer Avatar" class="h-full w-full object-cover" data-alt="Portrait of a male customer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyBrJNCjo4n9qO5Pv9OUuReAJhcXtBJAQSVKRs8S6FgEhJ1JAWppaazOiQ8799epyuMOAc3kBnAYuLWg1N6rAl050-Mlya14166ouo_ikz6cD20NsD8I2p7Uv-FO5ZC0Zo2rukKe8LL5_RXH3KB2tKwYA-0MOc-IpPunsO8a5oH-wJgSiIS9eZS9fb0hAx09lx2iKX2ni5TJClRIlUQGOmhXC1Rwc0SNjIPVIsecaiIhkbQ_L_JyREFLBRiN2Dy6EJ6YYzNAAHPQ"/>
+</div>
+<span>Mike Ross</span>
+</div>
+</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<span class="line-clamp-1">4x Tacos, 1x Nachos</span>
+</td>
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">$55.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                                                Cooking
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-medium text-stone-500 hover:text-primary dark:text-stone-400 dark:hover:text-primary transition-colors">
+                                                View Details
+                                            </button>
+</td>
+</tr>
+<!-- Row 4: Ready -->
+<tr class="group hover:bg-stone-50 dark:hover:bg-surface-hover/30 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#1020</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden">
+<img alt="Customer Avatar" class="h-full w-full object-cover" data-alt="Portrait of a female customer looking away" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5yZYGSbVXIKwd-_DOv_y0I-JmamGMVNPtP5AK4moUtq2EEo_WB4X3iYj_hIE80DYdPJ1d1P9-YgMz5mNZbEOFrYSGPJu-0hH4KMsnk3JajamC689-O_td-wbDxdgycbZ_kw-qt7iqGmCYhssAtI58MYpKccgxE6SFqhSsrUhaKkmAXg342ZImwskSlBeaGwSdxQwYzT55UCmTjWKrcZ7YKqVTkBj0kKbE1hqu8IpUBgAjQw_671YSZIW-MPlrXPbmI0DsWygOtA"/>
+</div>
+<span>Rachel Green</span>
+</div>
+</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<span class="line-clamp-1">1x Salad, 1x Water</span>
+</td>
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">$15.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                                Ready
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="flex items-center justify-end gap-1 ml-auto text-sm font-medium text-primary hover:text-primary-hover">
+<span>Mark Delivered</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Delivered -->
+<tr class="group hover:bg-stone-50 dark:hover:bg-surface-hover/30 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">#1019</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-stone-200 dark:bg-stone-700 overflow-hidden">
+<img alt="Customer Avatar" class="h-full w-full object-cover" data-alt="Portrait of a female customer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEsHQS6E4n-zPoJkXFjELha_ID3PkNASEXgeIGneIisbmHw_cd1ucf2enA1lIsrjqbnfISsUSv13rWfXeL-D2ibJ2MtrcCg92X6U0YBV8_z4rE02_Bv2sq-fYCywdEtNMb_oUs7zXrk_pIMSnpAZat0y-Fljb2Mhe2GFJ1MgmeQmpY6GI5d-8YEx-VeEimiWXI7T9JbGbMR48aSZjTBn-opKeZpNZebxf7erJ7xOUFup6YYsoMm0P3P0MWgxnhFgxZ5rfMUyPVyA"/>
+</div>
+<span>Joey T</span>
+</div>
+</td>
+<td class="px-6 py-4 text-stone-600 dark:text-stone-300">
+<span class="line-clamp-1">2x Sandwiches</span>
+</td>
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">$22.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center rounded-full bg-stone-100 px-2.5 py-0.5 text-xs font-medium text-stone-800 dark:bg-stone-700 dark:text-stone-300">
+                                                Delivered
+                                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-sm font-medium text-stone-500 hover:text-primary dark:text-stone-400 dark:hover:text-primary transition-colors">
+                                                View Details
+                                            </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination/Footer of Table -->
+<div class="flex items-center justify-between border-t border-stone-200 bg-stone-50 px-6 py-4 dark:border-stone-800 dark:bg-surface-hover/50">
+<span class="text-sm text-stone-500 dark:text-stone-400">Showing 5 of 12 orders</span>
+<div class="flex gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-400 hover:border-primary hover:text-primary dark:border-stone-700 dark:bg-surface-card dark:text-stone-500 dark:hover:border-primary dark:hover:text-primary">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-400 hover:border-primary hover:text-primary dark:border-stone-700 dark:bg-surface-card dark:text-stone-500 dark:hover:border-primary dark:hover:text-primary">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

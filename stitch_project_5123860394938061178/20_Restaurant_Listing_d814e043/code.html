@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restaurant Listing - Foodie</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#181411", // Matching the provided component's background
+                        "surface-dark": "#221e1a", // Slightly lighter for cards/sidebar
+                        "surface-highlight": "#392f28", // Input fields, active states
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181411; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392f28; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #54453b; 
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#392f28] bg-[#181411] px-4 py-3 lg:px-10">
+<div class="flex items-center gap-4 lg:gap-8">
+<div class="flex items-center gap-2 text-primary cursor-pointer">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20">
+<span class="material-symbols-outlined text-primary text-[24px]">lunch_dining</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] hidden sm:block">Foodie</h2>
+</div>
+<label class="flex flex-col min-w-[160px] !h-10 max-w-[400px] lg:w-[320px]">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#baa89c] flex border-none bg-[#392f28] items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined text-[#baa89c] text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#392f28] focus:border-none h-full placeholder:text-[#baa89c] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search for food, coffee, etc..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4 lg:gap-8">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-white text-sm font-bold leading-normal border-b-2 border-primary pb-0.5" href="#">Home</a>
+<a class="text-[#baa89c] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Orders</a>
+<a class="text-[#baa89c] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Favorites</a>
+</div>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-[#392f28] hover:bg-[#54453b] transition-colors text-white relative">
+<span class="material-symbols-outlined text-white text-[20px]">shopping_cart</span>
+<span class="absolute top-2 right-2 size-2 rounded-full bg-primary border border-[#181411]"></span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-[#392f28] hover:bg-[#54453b] transition-colors text-white">
+<span class="material-symbols-outlined text-white text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-xl size-10 cursor-pointer border border-[#392f28]" data-alt="User profile avatar showing a smiling woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHG_P8Lnl3Vvq-D4gD-XMevXaTzK9fDUYdoo9z5lxbw43Kz_c9k5bvsWc5PwiqlvvF3-5SGkXTJ7bXKAatdL6hxRBufH6Eo143b78Y0YeTYMLEtB9K0Q8FM7AiTav0K5AvABawqmPujiU0TjdHogoxpJSrw3xdVRwzYt3VkD5U-AWZ4G61B3gH6hzSP7lSSbdgwzo7oZcDZasX4YdlhhPf-elUNQBmNQoCZkc1uzJjItX-UFTzqiBufNExEQT6YNsxWzy7JRylag");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 relative">
+<!-- Sidebar Filters (Sticky) -->
+<aside class="hidden lg:flex flex-col w-[280px] shrink-0 sticky top-[73px] h-[calc(100vh-73px)] overflow-y-auto border-r border-[#392f28] bg-[#181411] p-6 gap-8">
+<!-- Filter Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-white text-lg font-bold">Filters</h3>
+<button class="text-primary text-sm font-medium hover:underline">Clear all</button>
+</div>
+<!-- Categories -->
+<div class="flex flex-col gap-4">
+<h4 class="text-[#baa89c] text-xs font-bold uppercase tracking-wider">Categories</h4>
+<div class="flex flex-col gap-2">
+<label class="group flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-[#2a231d] transition-colors bg-[#2a231d]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">restaurant</span>
+<span class="text-white text-sm font-medium">All</span>
+</div>
+<input checked="" class="text-primary focus:ring-0 bg-transparent border-[#54453b]" name="category" type="radio"/>
+</label>
+<label class="group flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-[#2a231d] transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#baa89c] group-hover:text-white text-[20px] transition-colors">fastfood</span>
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Fast Food</span>
+</div>
+<input class="text-primary focus:ring-0 bg-transparent border-[#54453b]" name="category" type="radio"/>
+</label>
+<label class="group flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-[#2a231d] transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#baa89c] group-hover:text-white text-[20px] transition-colors">eco</span>
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Healthy</span>
+</div>
+<input class="text-primary focus:ring-0 bg-transparent border-[#54453b]" name="category" type="radio"/>
+</label>
+<label class="group flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-[#2a231d] transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#baa89c] group-hover:text-white text-[20px] transition-colors">ramen_dining</span>
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Asian</span>
+</div>
+<input class="text-primary focus:ring-0 bg-transparent border-[#54453b]" name="category" type="radio"/>
+</label>
+<label class="group flex items-center justify-between p-2 rounded-lg cursor-pointer hover:bg-[#2a231d] transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#baa89c] group-hover:text-white text-[20px] transition-colors">local_pizza</span>
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Pizza</span>
+</div>
+<input class="text-primary focus:ring-0 bg-transparent border-[#54453b]" name="category" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div class="flex flex-col gap-4">
+<h4 class="text-[#baa89c] text-xs font-bold uppercase tracking-wider">Price Range</h4>
+<div class="flex items-center gap-2 bg-[#2a231d] p-1 rounded-lg">
+<button class="flex-1 py-1.5 text-xs font-bold text-[#181411] bg-white rounded shadow-sm hover:bg-gray-100 transition-colors">$</button>
+<button class="flex-1 py-1.5 text-xs font-medium text-[#baa89c] hover:text-white hover:bg-[#392f28] rounded transition-colors">$$</button>
+<button class="flex-1 py-1.5 text-xs font-medium text-[#baa89c] hover:text-white hover:bg-[#392f28] rounded transition-colors">$$$</button>
+<button class="flex-1 py-1.5 text-xs font-medium text-[#baa89c] hover:text-white hover:bg-[#392f28] rounded transition-colors">$$$$</button>
+</div>
+</div>
+<!-- More Filters -->
+<div class="flex flex-col gap-3">
+<h4 class="text-[#baa89c] text-xs font-bold uppercase tracking-wider">Preferences</h4>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Ratings 4.5+</span>
+<input class="h-5 w-5 rounded border-[#54453b] bg-[#2a231d] text-primary focus:ring-0 checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Free Delivery</span>
+<input checked="" class="h-5 w-5 rounded border-[#54453b] bg-[#2a231d] text-primary focus:ring-0 checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[#baa89c] group-hover:text-white text-sm font-medium transition-colors">Special Offers</span>
+<input class="h-5 w-5 rounded border-[#54453b] bg-[#2a231d] text-primary focus:ring-0 checked:bg-primary transition-colors" type="checkbox"/>
+</label>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col p-4 md:p-8 overflow-y-auto">
+<!-- Breadcrumb & Sort -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h1 class="text-white text-2xl md:text-3xl font-bold leading-tight">Restaurants near <span class="text-primary">New York, USA</span></h1>
+<p class="text-[#baa89c] text-sm mt-1">142 restaurants found</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Mobile Filter Toggle -->
+<button class="lg:hidden flex items-center gap-2 px-4 py-2 bg-[#2a231d] text-white rounded-lg border border-[#392f28] hover:bg-[#392f28] transition-colors">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span class="text-sm font-medium">Filters</span>
+</button>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 bg-[#181411] text-white rounded-lg border border-[#392f28] hover:bg-[#2a231d] transition-colors min-w-[160px] justify-between">
+<span class="text-sm font-medium">Sort by: <span class="text-primary">Recommended</span></span>
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+<!-- Dropdown (Hidden by default for visual mock) -->
+</div>
+</div>
+</div>
+<!-- Restaurant Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Delicious burger with cheese and lettuce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Juicy beef burger with melted cheese and fresh vegetables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8tR9tfR7XwylQs6jk_1287SlrdagAd4ePh98azZWvxvoNJ0G8hCDptMSZnF0a40cxjOQKHJYGG7UguOMZMzc1iBlQ3fEGft2YPK1IbNQ2ZhHCNGPmoz-gRHO6uJWkgHuB-becO5wSU3W-yg2W18GdcsmE1ymQ0tDy5z7ogQl_6hNFuYmHh8-FyR_gIlkStWxGG-d5i5BTJ6iISVz2OqmbRpR6a0H3ncyPpbIiwRrhcqc61eVI8aU8R5s6R_xb-G2h-uRandgyVg"/>
+<div class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
+                            Free Delivery
+                        </div>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            25-35 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Burger King</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.5
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Fast Food</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">American</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$$</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Fresh sushi platter with various rolls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Colorful sushi rolls arranged on a black plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCdpu2__bC8p_sE0zoVZvfYXK_rN1TELo6cCVg6QLfUZDLbQ5qvX4RwNcU1m_b7Sw8yjWKQvRo00rF-umdEQsxNwYB6Mrh96F-70U6zUyYAGJM0tN29dbZuw9we6MskSrKJR3EmFceu9cY4sT8nA1W2dcxUrvk6APZ3vPoepyOj8Vhj2STropITmOEKhJn5Of45OuG3AwStrDqQazV3oaHYYMoh7PuMpw5qj0iqHJc1m3sRYWLTw6uqzmpkA13qvk2rwRRM2UkmQ"/>
+<div class="absolute top-3 left-3 bg-[#4ade80] text-black text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
+                            20% Off
+                        </div>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            40-50 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Sushi Master</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.8
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Japanese</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Healthy</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$$$</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Slice of pepperoni pizza being lifted" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Cheesy pepperoni pizza slice with basil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABR7lxGebm1q6bhabjy4B6krk_JKVIZeSo76p93Sy2l0TxbIZ1b2OHUppmSC0ZSHrrpBeWpGsSFb1WXcEhp4PeY_W_9UVJt_3vdLaYSVUWq5xV6C2WLzuX9kiSnMYQKMgcnKJRvyV_QJRIdy2RmJqSdSMfI8ab01HcwyXDszMzwBbmWr33k2a1YT9UXDJn-685jMfHIdl7phRQIJHX-92d8tZa7-qGgNxGnye7xgpFqlHmeFCFlMkNz7gqKIjh9C02ea3EJiBHKg"/>
+<div class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
+                            Free Delivery
+                        </div>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-primary bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            30-40 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Pizza Hut</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.2
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Pizza</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Fast Food</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$$</span>
+</div>
+</div>
+</div>
+<!-- Card 4 (Skeleton Loader) -->
+<div class="flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] animate-pulse">
+<div class="h-48 bg-[#2a231d] w-full"></div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="h-6 bg-[#2a231d] rounded w-2/3"></div>
+<div class="h-6 bg-[#2a231d] rounded w-10"></div>
+</div>
+<div class="flex gap-2 mt-1">
+<div class="h-5 bg-[#2a231d] rounded w-16"></div>
+<div class="h-5 bg-[#2a231d] rounded w-16"></div>
+<div class="h-5 bg-[#2a231d] rounded w-8"></div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Fresh green salad bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Healthy salad bowl with avocado and greens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrgPolfJCfKTFPpeQN4IYcRaZgmIyzvbfssdCLM30SjQjI8R3EDB_DgMr29IFHdTfLygpBMrwt5M2kUVVEfOMtBizUTzkBbbNn4GY_9t69O0u1qsJZs-nG9lnS85fSo88EcvNNHjDj-1s096wztHF526nRwHC-QpvnBx5SsNrhVF14viztkFLYNJLigfmj22Pbbh-jjnKxvyhMPG6fzhaBaYB4dGGSMmDtSPhp91XXVTsse2D3EUxNL30aY3sW-tpWEsUoPNCwcA"/>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            15-25 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Green Bowl</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.9
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Healthy</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Vegan</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$$$</span>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Spicy mexican tacos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Three tacos with lime and salsa on a board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNmuSLCbL5PfpHj-cNVpJeBTkT2JO_Sb8D49lDRvQrkpu8YkIniuMunYSZbAly31aMT_mly1yBn6ZYge-X7S7AIVAZXKEy_rG2lmevsFBKt4IVe3NU3eBl-p9X7rOISUjO9luLALrv6TDyu3dLrfuZ6IRM3DNLXqtqkf9X6kwiuQLJWZAe9BTwU05qlSjJ1npYWcfO-6K0Qc08W7UvclIMfrVGDASm65u8cEJfdReYKfrop7Hy7IkqcknK71BE-nFxOCRx1zyrpQ"/>
+<div class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
+                            Free Delivery
+                        </div>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            35-45 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Taco Bell</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.0
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Mexican</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Spicy</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$</span>
+</div>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="group flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<img alt="Juicy steak with fries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Grilled steak served with french fries on a plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGDrJz58J22sn8fIhCIm3_s8TGdt9Fng7r2ucVUFxOWZ6D1aLGYc_ZqWbWjQb7_PzOMfCLYpjyZh9ijKtY0QXx0RlaNOoOSpu8Q-lBtYSU0iW7q7X1Fcqn5hl7Lc0pFqFCM17n2I9hy90sQIU2EJajp-jPksm2oMC6-1UaHWuEiey1kcePbwpdS1Mq799sZFKPW5JHms_0NGixO8TaXKZad-yDhdfELi0xQwxSY8ygAKpCk0bvc9bngrE35vxw7-adaC0PBbXubw"/>
+<button class="absolute top-3 right-3 size-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 right-3 bg-white text-black text-xs font-bold px-2 py-1 rounded-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary fill-current">schedule</span>
+                            50-60 min
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-white text-lg font-bold truncate pr-2">Steakhouse 55</h3>
+<div class="flex items-center gap-1 bg-[#2a231d] px-1.5 py-0.5 rounded text-white text-sm font-bold border border-[#392f28]">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1">star</span>
+                                4.7
+                            </div>
+</div>
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Grill</span>
+<span class="text-[#baa89c] bg-[#2a231d] px-2 py-0.5 rounded">Dinner</span>
+<span class="text-[#baa89c] px-1">•</span>
+<span class="text-[#baa89c]">$$$$</span>
+</div>
+</div>
+</div>
+<!-- Card 8 (Skeleton Loader) -->
+<div class="flex flex-col bg-[#221e1a] rounded-xl overflow-hidden border border-[#392f28] animate-pulse">
+<div class="h-48 bg-[#2a231d] w-full"></div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div class="h-6 bg-[#2a231d] rounded w-1/2"></div>
+<div class="h-6 bg-[#2a231d] rounded w-10"></div>
+</div>
+<div class="flex gap-2 mt-1">
+<div class="h-5 bg-[#2a231d] rounded w-12"></div>
+<div class="h-5 bg-[#2a231d] rounded w-20"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="flex justify-center mt-12 mb-8">
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-primary/20">
+                    Load More Restaurants
+                    <span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+</main>
+</div>
+</body></html>

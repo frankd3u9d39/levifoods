@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodieExpress - Food Details</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "primary-dark": "#d66210", 
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2a1e16",
+                        "surface-darker": "#1a120d",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221710;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #392f28;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #54453b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }input[type="checkbox"]:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+            border-color: transparent;
+            background-color: #f47b25;
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        input[type="checkbox"]:focus {
+            --tw-ring-color: #f47b25;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#392f28] bg-background-dark/95 backdrop-blur-md px-4 md:px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-4xl filled-icon">local_pizza</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">FoodieExpress</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full group focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-[#baa89c] flex border-none bg-[#392f28] items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#392f28] focus:border-none h-full placeholder:text-[#baa89c] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search for food..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Menu</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Orders</a>
+<a class="text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</div>
+<button class="relative flex items-center gap-2 cursor-pointer justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary hover:bg-primary-dark transition-colors text-[#181411] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-[20px] filled-icon">shopping_cart</span>
+<span class="truncate">Cart</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-[10px] font-bold text-primary">2</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-start p-4 md:p-8 lg:p-12 w-full max-w-[1400px] mx-auto">
+<div class="w-full flex flex-wrap gap-2 mb-6">
+<a class="text-[#baa89c] hover:text-white transition-colors text-sm font-medium leading-normal flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+            Home
+        </a>
+<span class="text-[#baa89c] text-sm font-medium leading-normal">/</span>
+<a class="text-[#baa89c] hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Burgers</a>
+<span class="text-[#baa89c] text-sm font-medium leading-normal">/</span>
+<span class="text-primary text-sm font-medium leading-normal">Double Bacon Burger</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full">
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-t-[2.5rem] rounded-b-xl shadow-2xl shadow-black/40 group border-b border-[#392f28]">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Juicy double bacon cheeseburger with fresh lettuce and tomato" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8DLVr-fwHs7Pq70CQSmGijpZcmIjzF3ViYpfYydhFBY09SXE7Jjb_cRnX9p-VUSAL_nIBea9AyA2zJcisUZXdRS7a5pX34xYZ3GlIR1t_DC_MGFZgP-4tq-GSafnYB5hlKYG7nTLC9rp1aEl1AQBOzg8O6qjhy79cx5DI_3sGaM3-iUWxTha6LyyhGnC4NkaSmb6hCRftmM5SV03Sv8amg60X28sLjXjCoeyNoOOsCmvU0saA1f_7h9POYm0GbWvU9VEDGE8Fqg');">
+</div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/10">
+<span class="material-symbols-outlined text-primary text-[18px] filled-icon">star</span>
+<span class="text-sm font-bold">4.8</span>
+<span class="text-xs text-gray-400">(124 reviews)</span>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="bg-primary/90 backdrop-blur text-[#181411] px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">Bestseller</span>
+<span class="bg-black/60 backdrop-blur text-white px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border border-white/10">Chef's Choice</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-2 md:gap-4 mt-2">
+<div class="bg-surface-dark rounded-xl p-3 text-center border border-[#392f28]">
+<p class="text-[#baa89c] text-xs uppercase font-bold tracking-wider mb-1">Calories</p>
+<p class="text-white text-lg font-bold">850</p>
+</div>
+<div class="bg-surface-dark rounded-xl p-3 text-center border border-[#392f28]">
+<p class="text-[#baa89c] text-xs uppercase font-bold tracking-wider mb-1">Protein</p>
+<p class="text-white text-lg font-bold">42g</p>
+</div>
+<div class="bg-surface-dark rounded-xl p-3 text-center border border-[#392f28]">
+<p class="text-[#baa89c] text-xs uppercase font-bold tracking-wider mb-1">Fat</p>
+<p class="text-white text-lg font-bold">36g</p>
+</div>
+<div class="bg-surface-dark rounded-xl p-3 text-center border border-[#392f28]">
+<p class="text-[#baa89c] text-xs uppercase font-bold tracking-wider mb-1">Carbs</p>
+<p class="text-white text-lg font-bold">58g</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col h-full relative">
+<div class="flex flex-col gap-6 p-1 pb-32">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Double Bacon Flame-Grilled Burger</h1>
+</div>
+<p class="text-[#baa89c] text-base leading-relaxed mb-4">
+                        Two quarter-pound beef patties, melted sharp cheddar, crispy hickory-smoked bacon, fresh lettuce, vine-ripened tomato, and our secret chipotle mayo sauce on a toasted brioche bun.
+                    </p>
+<div class="flex items-center gap-3">
+<span class="text-3xl font-bold text-primary">$12.99</span>
+<span class="text-lg text-[#baa89c] line-through decoration-red-500">$14.99</span>
+<span class="text-green-500 text-sm font-bold bg-green-500/10 px-2 py-0.5 rounded ml-2">15% OFF</span>
+</div>
+</div>
+<hr class="border-[#392f28]"/>
+<form class="flex flex-col gap-6" onsubmit="return false;">
+<div>
+<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">straighten</span>
+                            Select Size
+                        </h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="size" type="radio" value="regular"/>
+<div class="rounded-xl border border-[#392f28] bg-surface-dark p-3 text-center hover:bg-[#392f28] peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+<p class="font-bold">Regular</p>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="large"/>
+<div class="rounded-xl border border-[#392f28] bg-surface-dark p-3 text-center hover:bg-[#392f28] peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+<p class="font-bold">Large</p>
+<p class="text-xs text-[#baa89c] peer-checked:text-primary/80">+$2.00</p>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="monster"/>
+<div class="rounded-xl border border-[#392f28] bg-surface-dark p-3 text-center hover:bg-[#392f28] peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:text-primary transition-all">
+<p class="font-bold">Monster</p>
+<p class="text-xs text-[#baa89c] peer-checked:text-primary/80">+$4.00</p>
+</div>
+</label>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+                            Customize Your Order
+                        </h3>
+<div class="space-y-3 bg-surface-dark rounded-xl p-4 border border-[#392f28]">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-[#54453b] bg-[#181411] text-primary focus:ring-offset-0 focus:ring-0 checked:bg-primary checked:border-primary transition-colors" type="checkbox"/>
+<span class="text-white group-hover:text-primary transition-colors">Extra Cheese</span>
+</div>
+<span class="text-[#baa89c] text-sm font-medium">+$1.00</span>
+</label>
+<hr class="border-[#392f28] opacity-50"/>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-[#54453b] bg-[#181411] text-primary focus:ring-offset-0 focus:ring-0 checked:bg-primary checked:border-primary transition-colors" type="checkbox"/>
+<span class="text-white group-hover:text-primary transition-colors">Add Bacon</span>
+</div>
+<span class="text-[#baa89c] text-sm font-medium">+$1.50</span>
+</label>
+<hr class="border-[#392f28] opacity-50"/>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-[#54453b] bg-[#181411] text-primary focus:ring-offset-0 focus:ring-0 checked:bg-primary checked:border-primary transition-colors" type="checkbox"/>
+<span class="text-white group-hover:text-primary transition-colors">Gluten Free Bun</span>
+</div>
+<span class="text-[#baa89c] text-sm font-medium">+$2.00</span>
+</label>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cancel</span>
+                            Removals
+                        </h3>
+<div class="flex flex-wrap gap-2">
+<label class="cursor-pointer select-none">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 rounded-lg border border-[#392f28] bg-surface-dark text-[#baa89c] hover:bg-[#392f28] peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-500 transition-all text-sm font-medium">
+                                    No Onions
+                                </div>
+</label>
+<label class="cursor-pointer select-none">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 rounded-lg border border-[#392f28] bg-surface-dark text-[#baa89c] hover:bg-[#392f28] peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-500 transition-all text-sm font-medium">
+                                    No Tomato
+                                </div>
+</label>
+<label class="cursor-pointer select-none">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 rounded-lg border border-[#392f28] bg-surface-dark text-[#baa89c] hover:bg-[#392f28] peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-500 transition-all text-sm font-medium">
+                                    No Mayo
+                                </div>
+</label>
+<label class="cursor-pointer select-none">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 rounded-lg border border-[#392f28] bg-surface-dark text-[#baa89c] hover:bg-[#392f28] peer-checked:bg-red-500/10 peer-checked:border-red-500 peer-checked:text-red-500 transition-all text-sm font-medium">
+                                    No Pickles
+                                </div>
+</label>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+                            Special Instructions
+                        </h3>
+<textarea class="w-full bg-surface-dark border-[#392f28] rounded-xl text-white placeholder-[#baa89c] focus:border-primary focus:ring-1 focus:ring-primary p-3 text-sm resize-none" placeholder="Anything else we should know? (e.g. Allergy info)" rows="3"></textarea>
+</div>
+</form>
+</div>
+<div class="fixed lg:absolute bottom-4 left-4 right-4 lg:left-0 lg:right-0 z-20">
+<div class="bg-primary shadow-2xl shadow-primary/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-full lg:max-w-none mx-auto lg:mx-0">
+<div class="flex items-center bg-black/20 rounded-xl h-12">
+<button class="w-12 h-full flex items-center justify-center text-white/70 hover:text-white hover:bg-black/10 rounded-l-xl transition-colors">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="w-8 text-center text-white font-bold text-lg">1</span>
+<button class="w-12 h-full flex items-center justify-center text-white/70 hover:text-white hover:bg-black/10 rounded-r-xl transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<button class="flex-1 w-full bg-surface-darker hover:bg-black text-white font-bold rounded-xl h-12 px-6 flex items-center justify-between transition-all transform active:scale-[0.98] shadow-lg">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined filled-icon">shopping_bag</span>
+                            Add to Cart
+                        </span>
+<span class="bg-white/10 px-2 py-1 rounded text-sm">$12.99</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<section class="w-full mt-20 mb-10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold text-white">Complete Your Meal</h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-white hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-white hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+<div class="bg-surface-dark rounded-2xl overflow-hidden border border-[#392f28] group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="aspect-video w-full bg-cover bg-center" data-alt="Crispy golden french fries in a basket" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0vFnSdtH0p_44pslhAuUBFN_yUQbF9uCpkvdKZIRTVjw0W2FMzxaeFeLio-ZzLQp2feYVEjnEw3r2lrBANOc955fW6Afj5kpCMdsqXg_t5p2CwlCDF4mpWLsOlQaF4EB17x61yrlAMBoCT6t5DyeGXv4tLSVYpIA_m4aGrJTj-P5gDdjSJz9oL1finSGlK0KgKggujp6H5VV6ExzOfwfTS2bB3ajjYi8IUa75hdtyMxlbMq7yJdEnEET2l_zdW_PIErXNN5_S9Q');">
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">French Fries</h4>
+<p class="text-[#baa89c] text-sm line-clamp-2 mb-3">Crispy, golden, salted potato fries.</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold">$3.99</span>
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-primary hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark rounded-2xl overflow-hidden border border-[#392f28] group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="aspect-video w-full bg-cover bg-center" data-alt="Glass of cold cola with ice and lime" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHGkADN4MQj78FGeO19E2jgJ3r2s-s-jipDfwHVRPoyiGoPmRs0hPFdvmSMa_oZgbDjLqX0dcJvMOfgquDt8meG3XMHwudQZbKqOxgxGY2tRc83MGZ6oEmkWBZ1IE2DaO3VNYz6jIVw50nOicA-r75szU02_DzMwg47s-f3p70NzOPQ0jyiB468Gs_YyswwE5S7a6DPylFva8UhUBSns4itmMDnlDikyM03KJBo6-qhgf4U10rHi6QmCbRreAIozcK8JC1oV9Nww');">
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">Coca Cola</h4>
+<p class="text-[#baa89c] text-sm line-clamp-2 mb-3">Ice cold cola refreshment.</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold">$2.50</span>
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-primary hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark rounded-2xl overflow-hidden border border-[#392f28] group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="aspect-video w-full bg-cover bg-center" data-alt="Crispy battered onion rings stacked high" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA73NjYVcnrmx6XJIUF7s6MXjwwpCnfzAZgfNID_stjW4m-y6JjgyTOhlEv8YOePjUitR3U5RU7PjCOQG2NZPTwjAoTEiFeWB0FqpB-APwAiOitEE5bbPOeP03HQvhmUTE007uvsJcyamwUvpthC5fjrmz3WND1Ik4djHRHHGi3aNurWwFVl87ClxC0RPVyIGV0UiJ3Utln8T5uAbExiEZpIC6Qe2f6u6PBDjox9bFjjlJiXBq7uNLL6E0rqswxrfk1wsS71oEjAg');">
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">Onion Rings</h4>
+<p class="text-[#baa89c] text-sm line-clamp-2 mb-3">Battered and fried sweet onion rings.</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold">$4.50</span>
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-primary hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark rounded-2xl overflow-hidden border border-[#392f28] group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="aspect-video w-full bg-cover bg-center" data-alt="Chocolate fudge milkshake with whipped cream" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5GE2oNgQcqKapnJ6wPcVepg1KERzgxJfD5UKrDopQwn-WsGpIZR1qfGJFIn8CALGs5puGyz1Us3mmeqC1EN27RyXkN0SyVXajHx7dBOltexsZ1Uy1UTCXmOFZ6WxW1yms25WVOfXag1_gcX880FoK0tgukJ9mekrtZCw4m0o7li4HG7ORSXLMqG1h_Phwy4NCYEwn0IhEZr3CyKZKzgdwESB7IBW3t-8Ru2CV3YgtMZAobO8cM4R58xuV9pG04FhVrZc9INYrUw');">
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold text-lg mb-1 group-hover:text-primary transition-colors">Choco Shake</h4>
+<p class="text-[#baa89c] text-sm line-clamp-2 mb-3">Thick chocolate milkshake with cream.</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold">$5.99</span>
+<button class="w-8 h-8 rounded-full bg-[#392f28] flex items-center justify-center text-primary hover:bg-primary hover:text-[#181411] transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+</body></html>

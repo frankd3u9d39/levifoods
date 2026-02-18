@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restaurant Approvals &amp; Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#181411",
+                        "surface-dark": "#27201b",
+                        "surface-light": "#ffffff",
+                        "accent-green": "#4ade80",
+                        "accent-red": "#ef4444",
+                        "accent-yellow": "#facc15",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] dark:border-b-[#392f28] bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm px-6 lg:px-10 py-3">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Super Admin</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-center gap-8">
+<a class="text-slate-600 dark:text-[#baa89c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-primary font-bold transition-colors text-sm leading-normal" href="#">Restaurant Approvals</a>
+<a class="text-slate-600 dark:text-[#baa89c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">User Management</a>
+<a class="text-slate-600 dark:text-[#baa89c] hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex items-center gap-2 mr-4">
+<span class="text-sm font-medium text-slate-600 dark:text-[#baa89c]">admin@foodapp.com</span>
+</div>
+<button class="flex items-center justify-center overflow-hidden rounded-xl h-10 w-10 bg-slate-200 dark:bg-[#392f28] text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-[#4a3d34] transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-xl h-10 w-10 bg-slate-200 dark:bg-[#392f28] text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-[#4a3d34] transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1400px] px-4 md:px-10 py-8 mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Restaurant Approvals &amp; Management</h1>
+<p class="text-slate-500 dark:text-[#baa89c] mt-2">Manage restaurant onboarding requests, review documents, and update statuses.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 bg-slate-200 dark:bg-[#392f28] text-slate-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 dark:hover:bg-[#4a3d34] transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export List
+                </button>
+<button class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Invite Restaurant
+                </button>
+</div>
+</div>
+<div class="bg-white dark:bg-[#27201b] p-4 rounded-xl border border-slate-200 dark:border-[#392f28] mb-6 flex flex-col lg:flex-row gap-4 justify-between items-center shadow-sm">
+<div class="w-full lg:w-96 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#8a7a6e]">search</span>
+<input class="w-full bg-slate-50 dark:bg-[#181411] border border-slate-200 dark:border-[#392f28] rounded-lg py-2 pl-10 pr-4 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Search by name, email, or ID..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-3 w-full lg:w-auto">
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-[#181411] border border-slate-200 dark:border-[#392f28] rounded-lg px-3 py-2">
+<span class="text-xs font-semibold text-slate-500 dark:text-[#8a7a6e] uppercase">Status:</span>
+<select class="bg-transparent border-none p-0 text-sm font-medium text-slate-900 dark:text-white focus:ring-0 cursor-pointer">
+<option value="all">All Statuses</option>
+<option value="pending">Pending Approval</option>
+<option value="active">Active</option>
+<option value="suspended">Suspended</option>
+</select>
+</div>
+<div class="flex items-center gap-2 bg-slate-50 dark:bg-[#181411] border border-slate-200 dark:border-[#392f28] rounded-lg px-3 py-2">
+<span class="text-xs font-semibold text-slate-500 dark:text-[#8a7a6e] uppercase">Category:</span>
+<select class="bg-transparent border-none p-0 text-sm font-medium text-slate-900 dark:text-white focus:ring-0 cursor-pointer">
+<option value="all">All Categories</option>
+<option value="fast-food">Fast Food</option>
+<option value="fine-dining">Fine Dining</option>
+<option value="casual">Casual</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#27201b] rounded-xl border border-slate-200 dark:border-[#392f28] overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-slate-50 dark:bg-[#322a24] text-slate-500 dark:text-[#baa89c] font-semibold border-b border-slate-200 dark:border-[#392f28]">
+<tr>
+<th class="px-6 py-4">Restaurant Name</th>
+<th class="px-6 py-4">Owner Contact</th>
+<th class="px-6 py-4">Category</th>
+<th class="px-6 py-4">Registration Date</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-[#392f28]">
+<tr class="hover:bg-slate-50 dark:hover:bg-[#322a24] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-[#392f28] overflow-hidden flex-shrink-0">
+<img alt="Burger Joint" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDZNuvlr8-dCRpLVO3yr-XljgJKxZhJS6A5JcDOY1-55oPozSiVByuX3U_FDnRimLXxwRGGVK4anihW9Rgxe8Hf0Z1lzZEr-Bkim3dPSFhAoxRUUwTnMl5AUvx8sAJb1jH_EXIq5x80YefxvyRueSz_1AkUT1-7xWo9jVlmxnlDAo06M95nnZ08uf_sZkuym3jvbbVusN2MQarS8KuBExp-996LzsfOCr9tp00FeKogc6MbzJFicW4K7X0yBaLQKM3QGmdey0oiQ"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">The Burger Joint</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">ID: #REQ-2024-001</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white">John Smith</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">john.s@burgerjoint.com</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-600 dark:text-[#baa89c]">Fast Food</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-[#baa89c]">
+                                Oct 24, 2023
+                            </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-500 border border-yellow-200 dark:border-yellow-900/50">
+<span class="size-1.5 rounded-full bg-yellow-500"></span>
+                                    Pending Approval
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-[#4a3d34] transition-colors border border-slate-200 dark:border-[#54453b]">
+                                        Review Docs
+                                    </button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors" title="Approve">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-[#322a24] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-[#392f28] overflow-hidden flex-shrink-0">
+<img alt="Sushi Master" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp8tG6BAwA2eZdBPYXGtTEajW5uUEZVtobFhwmjSXANjuBnvaGqGUfGB5irWX5whtjlapz-ujdpKEmQLnNxTBJWK_bwttgJ9v-vPmxBXTjgvpPQ0E7n7zlnVeqi7jrpiWVHO5Lo-mOkc7vr3B9jt5cfehzcwpoISBJzxchxiPswt2BzqWzqLD3AfULBUG1EA55NV_BWSh12P5mkm9rjxxlZqpG7uu38Z2F1L0qZHQvvgMKp9gaMyb1nGjlWjTZ5jlvCSLnkMPXvA"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Sushi Master</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">ID: #RST-883-291</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white">Sarah Lee</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">s.lee@sushimaster.net</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-600 dark:text-[#baa89c]">Japanese</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-[#baa89c]">
+                                Sep 12, 2023
+                            </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 border border-green-200 dark:border-green-900/50">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-primary hover:text-orange-400 text-sm font-medium hover:underline" href="#">View Details</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-[#322a24] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-[#392f28] overflow-hidden flex-shrink-0">
+<img alt="Pizza Paradise" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxXw-DCt7yplp3bRuxFjEcQFt4N0kqwrr7f7_zezRunQPMC2TJ9viqI0ufJfmvIBFZrG2lfO4tTMD28U7USpUxl8jg9GqGtiDUjfboe08Qb_ELItFz449BdRApBLgTdiQDvznVKdKIP1NP_wkAeG4sIqMCFhzPGzmPv7dz71oxPMy_NS7iaPy7L-UT3XGIeH_Bpu5jfAFXRmw2AMFv1AYtJlhB-KYMdqgIn_ZSyZIKhZBatBFUkkXAt70CfWGO_-jsA71o0li5WA"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Pizza Paradise</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">ID: #REQ-2024-005</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white">Mario Rossi</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">mario@pizzaparadise.com</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-600 dark:text-[#baa89c]">Italian</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-[#baa89c]">
+                                Oct 25, 2023
+                            </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-500 border border-yellow-200 dark:border-yellow-900/50">
+<span class="size-1.5 rounded-full bg-yellow-500"></span>
+                                    Pending Approval
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-[#4a3d34] transition-colors border border-slate-200 dark:border-[#54453b]">
+                                        Review Docs
+                                    </button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors" title="Approve">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-[#322a24] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-[#392f28] overflow-hidden flex-shrink-0">
+<img alt="Green Bowl" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXTZjVBimBPDGbiqlvVlUM7dr611MWS7eFXT8YZevYWXxdIpJCJzbDeUA5gkSZxk3KleuFWnl6n5tc3rqtvOpvjL57Zd6yHlI9B1-OoqMlMBhkLmVfbwFnaGjNzdDeeqAOdfegyeNd0X7_pPzD1xC9z7AdqjO4zcPtjosyoOUVjHOBolHsf-UfwwNGI_ht0RgaHbaK_F2EgIMKx3b6oEXwgwQ1oTqfkBiBBXC04IBSsGsDl7qNJoTYjxLVGpPrHAgrLbdQ2pxosA"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Green Bowl</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">ID: #RST-102-445</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white">Emma Green</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">emma@greenbowl.co</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-600 dark:text-[#baa89c]">Vegan</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-[#baa89c]">
+                                Aug 05, 2023
+                            </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-500 border border-red-200 dark:border-red-900/50">
+<span class="size-1.5 rounded-full bg-red-500"></span>
+                                    Suspended
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-primary hover:text-orange-400 text-sm font-medium hover:underline" href="#">View Details</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-[#322a24] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-200 dark:bg-[#392f28] overflow-hidden flex-shrink-0">
+<img alt="Taco Fiesta" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDZNuvlr8-dCRpLVO3yr-XljgJKxZhJS6A5JcDOY1-55oPozSiVByuX3U_FDnRimLXxwRGGVK4anihW9Rgxe8Hf0Z1lzZEr-Bkim3dPSFhAoxRUUwTnMl5AUvx8sAJb1jH_EXIq5x80YefxvyRueSz_1AkUT1-7xWo9jVlmxnlDAo06M95nnZ08uf_sZkuym3jvbbVusN2MQarS8KuBExp-996LzsfOCr9tp00FeKogc6MbzJFicW4K7X0yBaLQKM3QGmdey0oiQ"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Taco Fiesta</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">ID: #RST-555-123</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="text-slate-900 dark:text-white">Carlos Mendez</div>
+<div class="text-xs text-slate-500 dark:text-[#8a7a6e]">carlos@tacofiesta.com</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-[#392f28] text-slate-600 dark:text-[#baa89c]">Mexican</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-[#baa89c]">
+                                Sep 28, 2023
+                            </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 border border-green-200 dark:border-green-900/50">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-primary hover:text-orange-400 text-sm font-medium hover:underline" href="#">View Details</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-slate-200 dark:border-[#392f28] flex flex-col sm:flex-row items-center justify-between gap-4">
+<span class="text-sm text-slate-500 dark:text-[#8a7a6e]">Showing <span class="font-bold text-slate-900 dark:text-white">1-5</span> of <span class="font-bold text-slate-900 dark:text-white">24</span> restaurants</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-[#392f28] text-slate-500 dark:text-[#8a7a6e] hover:bg-slate-50 dark:hover:bg-[#392f28] disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+                        Previous
+                    </button>
+<button class="px-3 py-1 rounded-lg border border-primary bg-primary text-white text-sm">1</button>
+<button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-[#392f28] text-slate-600 dark:text-[#baa89c] hover:bg-slate-50 dark:hover:bg-[#392f28] text-sm">2</button>
+<button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-[#392f28] text-slate-600 dark:text-[#baa89c] hover:bg-slate-50 dark:hover:bg-[#392f28] text-sm">3</button>
+<span class="text-slate-400">...</span>
+<button class="px-3 py-1 rounded-lg border border-slate-200 dark:border-[#392f28] text-slate-500 dark:text-[#8a7a6e] hover:bg-slate-50 dark:hover:bg-[#392f28]">
+                        Next
+                    </button>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

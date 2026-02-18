@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Food Ordering App - Authentication</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f47b25",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2e231c",
+                        "surface-dark-hover": "#3a2d24",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary/30 selection:text-primary">
+<div class="flex min-h-screen w-full flex-row overflow-hidden">
+<!-- Left Side: Immersive Image -->
+<div class="hidden lg:flex w-1/2 relative flex-col justify-end p-12 overflow-hidden">
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 hover:scale-105" data-alt="Top down view of a dark table filled with various gourmet dishes like roasted meats, salads, and soups" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvMiQfIN-C7Cr5tdIgzeKIAOcSOfsIBUTHnc8gu0b3ZpqNzIu_McxoElqCRcQA-vlAyO0gJI6QFlBumgp_3F-wDUjF2zOXJN5Z2udRg1134GN5TQZyrKhvk4CRpmjPEWyMQiAzPMnJ6JGxnhROjekiDknx5OOAUYVo7wl9NZQNGCmUSCuFrzY5TCQJfqmCRmHHZxSdOPQBiqpcQpE8lTWJnzI2olbygiOygxvgOK5teNA-0AbsI-SOgXyXLbeW51i3nnkrugwQ3w");'></div>
+<!-- Overlay Gradient -->
+<div class="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="relative z-20 max-w-lg">
+<div class="mb-6 flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[24px]">restaurant_menu</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-white">CraveDash</span>
+</div>
+<h2 class="text-4xl font-extrabold leading-tight text-white mb-4">
+                    Experience the taste of <span class="text-primary">excellence</span> at your doorstep.
+                </h2>
+<p class="text-lg text-gray-300">Join thousands of food lovers and explore the best local restaurants curated just for you.</p>
+<div class="mt-8 flex gap-2">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-2 rounded-full bg-white/30"></div>
+<div class="h-1.5 w-2 rounded-full bg-white/30"></div>
+</div>
+</div>
+</div>
+<!-- Right Side: Auth Form -->
+<div class="flex w-full lg:w-1/2 flex-col justify-center items-center px-6 py-12 lg:px-20 xl:px-32 bg-background-light dark:bg-background-dark relative">
+<!-- Mobile Header Logo (Visible only on small screens) -->
+<div class="lg:hidden absolute top-8 left-8 flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[20px]">restaurant_menu</span>
+</div>
+<span class="text-lg font-bold tracking-tight dark:text-white">CraveDash</span>
+</div>
+<div class="w-full max-w-[480px]">
+<!-- Toggle Switcher -->
+<div class="mb-10 flex p-1 bg-gray-200 dark:bg-surface-dark rounded-full relative w-fit mx-auto lg:mx-0">
+<button class="relative z-10 flex items-center gap-2 px-6 py-2.5 text-sm font-semibold transition-colors duration-200 text-white rounded-full bg-primary shadow-sm">
+<span>Log In</span>
+</button>
+<button class="relative z-10 flex items-center gap-2 px-6 py-2.5 text-sm font-semibold transition-colors duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-full">
+<span>Sign Up</span>
+</button>
+</div>
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome Back</h1>
+<p class="text-gray-500 dark:text-gray-400">Enter your details to access your account.</p>
+</div>
+<form class="flex flex-col gap-5">
+<!-- Email Field -->
+<label class="flex flex-col gap-1.5">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 ml-1">Email address</span>
+<div class="relative">
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark px-4 py-3.5 pl-11 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white dark:placeholder-gray-500 placeholder-gray-400" placeholder="name@example.com" type="email"/>
+<div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+</div>
+</label>
+<!-- Password Field -->
+<label class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center ml-1">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Password</span>
+<a class="text-sm font-semibold text-primary hover:text-orange-400 transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<input class="w-full rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark px-4 py-3.5 pl-11 pr-11 text-base outline-none ring-primary/20 transition-all focus:border-primary focus:ring-4 dark:text-white dark:placeholder-gray-500 placeholder-gray-400" placeholder="Enter your password" type="password"/>
+<div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</label>
+<!-- Submit Button -->
+<button class="mt-2 w-full rounded-xl bg-primary py-3.5 text-base font-bold text-white shadow-lg shadow-primary/25 transition-all hover:bg-orange-500 hover:shadow-primary/40 active:scale-[0.98]">
+                        Log In
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-8 flex items-center py-2">
+<div class="grow border-t border-gray-200 dark:border-gray-700"></div>
+<span class="mx-4 flex-shrink-0 text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">Or continue with</span>
+<div class="grow border-t border-gray-200 dark:border-gray-700"></div>
+</div>
+<!-- Social Login -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 transition-all hover:bg-gray-50 dark:hover:bg-surface-dark-hover">
+<img alt="Google" class="h-5 w-5" data-alt="Google logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQa-SBBLY1z3l2-1A25hiOCddHrBAufXVJViHGXoZlQKxnk7R-SNe2ufsZ7CE7F95W3Q1Rf8wyb0GD--4Nl-dbUfBkPbULUea8Jp_lTOsJz-NPEJE_-hZbd2esX3cb0CwWm4OXHzs3OzxAkoAUR4jhljQC70ppSG3O8ZJG9rsCKtQBtJuDW3SmYuCP3-SCkN9Mt7335xl3M9IcVEt3GLBNMO0VxF4uuowGvhzUl1AyIO9xI5n4TL87COoFchiCJUTnvWYqay60rg"/>
+<span>Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 rounded-xl border border-gray-200 dark:border-surface-dark-hover bg-white dark:bg-surface-dark py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 transition-all hover:bg-gray-50 dark:hover:bg-surface-dark-hover">
+<img alt="Apple" class="h-5 w-5 dark:invert" data-alt="Apple logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7VUdHlaSfrYlSkwA34zEyC0Wy8OuBHmDcxXZF4v8kOm0nIcm67vHwU505aLhx7ckVyLh1KucEUBSawBtML90SI-pSwo94cd6mGlRKJj6ccdoRAGBt9SPjir93tqYOhMhpaw_XkEN3D9t2HleMmWejSbCFhNkQWMUn1xhqu8V7pfggznzlKlGu-1BkynXUdZZLZvvlckJHg9MFDhQjeCxlpz-FBDHIQ37ZjcEbDY7fHlrWAasyEyfF8WnjyvLe7sdTueGn5N-RRg"/>
+<span>Apple</span>
+</button>
+</div>
+<!-- Footer Links -->
+<div class="mt-10 text-center">
+<p class="text-sm text-gray-500 dark:text-gray-400">
+                        Don't have an account? 
+                        <a class="font-bold text-primary hover:text-orange-400 transition-colors" href="#">Sign up for free</a>
+</p>
+<div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+                            Are you a restaurant owner?
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

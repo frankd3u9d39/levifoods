@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wallet &amp; Payments - FoodDelivery</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f97316", // Vibrant Orange
+                        "primary-dark": "#ea580c",
+                        "background-dark": "#0f0f11", // Deep Black/Charcoal
+                        "surface-dark": "#18181b", // Charcoal
+                        "surface-light": "#27272a", // Lighter Charcoal
+                        "border-dark": "#2f2f35",
+                        "text-muted": "#a1a1aa",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #18181b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f3f46; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #52525b; 
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display overflow-x-hidden antialiased">
+<div class="relative flex min-h-screen w-full flex-row overflow-hidden">
+<div class="hidden lg:flex w-72 flex-col bg-surface-dark border-r border-border-dark shrink-0 h-screen sticky top-0">
+<div class="flex h-full flex-col justify-between p-6">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-2">
+<div class="bg-gradient-to-br from-primary to-orange-600 rounded-xl h-10 w-10 flex items-center justify-center shadow-lg shadow-orange-500/20">
+<span class="text-white font-bold text-xl">F</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold leading-tight">FoodDelivery</h1>
+<p class="text-text-muted text-xs font-medium">Admin Panel</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:text-white hover:bg-surface-light transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:text-white hover:bg-surface-light transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">shopping_bag</span>
+<p class="text-sm font-medium">Orders</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-primary/10 to-transparent text-primary border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined fill-1">account_balance_wallet</span>
+<p class="text-sm font-bold">Wallet</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:text-white hover:bg-surface-light transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">restaurant_menu</span>
+<p class="text-sm font-medium">Menu</p>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:text-white hover:bg-surface-light transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-3 px-4 py-4 mt-auto border-t border-border-dark bg-surface-light/30 rounded-2xl">
+<div class="h-10 w-10 rounded-full ring-2 ring-primary/20 overflow-hidden">
+<img alt="User Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFOtIN8jxI2Sve91PmxUtPkLXnHMX7ywfWSfM7e8o-LT2FiJsK-2G4ccuntSlsDkGQNK47ypAoUZbYOt-kYysuixrug6WtGEHniHsiF9RYvVPA1k367a0SRDqzeD9NBHSJ7JLZZYtbM060PiHjVA3tzilwspR20sP5hnhNr25LHKLhsv1g3sGpADn3xFP-k1SGzceYdrisfwT6Z2dcSqMcyGLFxF9lvt0EOu30-zKD7DJ_kVSz68bWM0tsOFoqtUyS0btU-mD1cg"/>
+</div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-bold">Jane Doe</p>
+<p class="text-text-muted text-xs">View Profile</p>
+</div>
+</div>
+</div>
+</div>
+<main class="flex-1 flex flex-col min-w-0 bg-background-dark overflow-y-auto h-screen">
+<header class="lg:hidden flex items-center justify-between p-4 border-b border-border-dark bg-surface-dark sticky top-0 z-20">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 bg-gradient-to-br from-primary to-orange-600 rounded-lg flex items-center justify-center text-white font-bold">F</div>
+<span class="text-white font-bold">FoodDelivery</span>
+</div>
+<button class="text-white p-2 hover:bg-surface-light rounded-lg transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="flex-1 p-6 md:p-10 lg:p-12 max-w-7xl mx-auto w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">Wallet &amp; Payments</h1>
+<p class="text-text-muted text-base font-normal max-w-2xl">Manage your financial health, track transactions, and handle payouts seamlessly.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-surface-dark border border-border-dark text-white hover:bg-surface-light hover:border-primary/50 transition-all text-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+<div class="md:col-span-12 lg:col-span-5 flex flex-col justify-between p-8 rounded-[2rem] bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 shadow-2xl shadow-orange-900/40 relative overflow-hidden group border border-orange-400/20">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-white/10 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-black/10 blur-2xl"></div>
+<div class="relative z-10 flex justify-between items-start mb-8">
+<div>
+<p class="text-orange-100 text-sm font-semibold uppercase tracking-wider mb-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                Total Balance
+                            </p>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-extrabold text-white tracking-tight drop-shadow-sm">$12,450.00</span>
+</div>
+</div>
+<div class="bg-white/20 p-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-white text-[28px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="relative z-10 mt-auto flex flex-col sm:flex-row gap-4">
+<button class="flex-1 flex items-center justify-center gap-2 bg-white text-orange-600 hover:bg-orange-50 font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                                Add Funds
+                            </button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-black/20 hover:bg-black/30 text-white border border-white/10 font-semibold py-3.5 px-6 rounded-xl transition-all backdrop-blur-sm">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+                                Withdraw
+                            </button>
+</div>
+</div>
+<div class="md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="flex flex-col justify-center p-6 rounded-2xl bg-surface-dark border border-border-dark hover:border-primary/30 transition-colors group shadow-lg">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 rounded-xl bg-surface-light group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+</div>
+<span class="text-xs font-semibold px-2 py-1 rounded-md bg-green-500/10 text-green-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_drop_up</span> 12%
+                            </span>
+</div>
+<span class="text-sm text-text-muted font-medium mb-1">Total Income</span>
+<h3 class="text-2xl font-bold text-white">$15,430.00</h3>
+</div>
+<div class="flex flex-col justify-center p-6 rounded-2xl bg-surface-dark border border-border-dark hover:border-primary/30 transition-colors group shadow-lg">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 rounded-xl bg-surface-light group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">pending</span>
+</div>
+<span class="text-xs font-semibold px-2 py-1 rounded-md bg-surface-light text-text-muted">
+                                24h Left
+                            </span>
+</div>
+<span class="text-sm text-text-muted font-medium mb-1">Pending Clearance</span>
+<h3 class="text-2xl font-bold text-white">$45.00</h3>
+</div>
+<div class="flex flex-col justify-center p-6 rounded-2xl bg-surface-dark border border-border-dark hover:border-primary/30 transition-colors group shadow-lg">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 rounded-xl bg-surface-light group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">trending_down</span>
+</div>
+</div>
+<span class="text-sm text-text-muted font-medium mb-1">Withdrawals</span>
+<h3 class="text-2xl font-bold text-white">$2,100.00</h3>
+</div>
+<div class="relative flex flex-col justify-center p-6 rounded-2xl bg-surface-light border border-border-dark cursor-pointer group overflow-hidden shadow-lg">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex items-center justify-between h-full">
+<div class="flex flex-col gap-1">
+<span class="text-white font-bold text-lg group-hover:text-primary transition-colors">Manage Cards</span>
+<span class="text-sm text-text-muted">Link bank or card</span>
+</div>
+<div class="bg-background-dark p-3 rounded-full group-hover:scale-110 transition-transform border border-border-dark">
+<span class="material-symbols-outlined text-primary">credit_card</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col bg-surface-dark rounded-[1.5rem] border border-border-dark shadow-2xl overflow-hidden">
+<div class="p-6 border-b border-border-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-dark">
+<div class="flex items-center gap-3">
+<div class="h-8 w-1 bg-primary rounded-full"></div>
+<h2 class="text-xl font-bold text-white tracking-tight">Transaction History</h2>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-primary transition-colors material-symbols-outlined text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2.5 bg-background-dark border border-border-dark rounded-xl text-sm text-white placeholder-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-full sm:w-64 transition-all shadow-inner" placeholder="Search transactions..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-background-dark border border-border-dark rounded-xl text-sm text-text-muted hover:text-white hover:border-primary/50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                                Filter
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-light/50 border-b border-border-dark text-text-muted text-xs uppercase tracking-wider font-semibold">
+<th class="px-6 py-5 rounded-tl-lg">Transaction ID</th>
+<th class="px-6 py-5">Date &amp; Time</th>
+<th class="px-6 py-5">Description</th>
+<th class="px-6 py-5">Type</th>
+<th class="px-6 py-5 text-right">Amount</th>
+<th class="px-6 py-5 text-center rounded-tr-lg">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-border-dark bg-surface-dark">
+<tr class="hover:bg-surface-light transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-text-muted">#TXN-88392</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-white font-medium">Oct 24, 2023</span>
+<span class="text-xs text-text-muted">10:42 AM</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-[18px] text-primary">add_card</span>
+</div>
+<span class="font-medium text-white">Wallet Top-up</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center text-xs font-bold text-green-400 bg-green-400/10 px-2 py-1 rounded">Credit</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-green-400">+$500.00</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                            Success
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-light transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-text-muted">#TXN-88341</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-white font-medium">Oct 23, 2023</span>
+<span class="text-xs text-text-muted">02:15 PM</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-light flex items-center justify-center shrink-0 border border-border-dark group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-orange-400">shopping_bag</span>
+</div>
+<span class="font-medium text-white">Order #4421 - Burger King</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center text-xs font-bold text-text-muted bg-surface-light px-2 py-1 rounded">Debit</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-white">-$25.50</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                            Success
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-light transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-text-muted">#TXN-88200</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-white font-medium">Oct 22, 2023</span>
+<span class="text-xs text-text-muted">09:30 AM</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-light flex items-center justify-center shrink-0 border border-border-dark group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-orange-400">shopping_bag</span>
+</div>
+<span class="font-medium text-white">Order #4418 - Starbucks</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center text-xs font-bold text-text-muted bg-surface-light px-2 py-1 rounded">Debit</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-white">-$12.75</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-orange-500/10 text-orange-500 border border-orange-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
+                                            Pending
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-light transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-text-muted">#TXN-88155</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-white font-medium">Oct 20, 2023</span>
+<span class="text-xs text-text-muted">06:00 PM</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-light flex items-center justify-center shrink-0 border border-border-dark group-hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-[18px] text-orange-400">account_balance</span>
+</div>
+<span class="font-medium text-white">Withdrawal to Bank ****4211</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center text-xs font-bold text-text-muted bg-surface-light px-2 py-1 rounded">Debit</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-white">-$150.00</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-red-500/10 text-red-500 border border-red-500/20">
+<span class="material-symbols-outlined text-[14px]">close</span>
+                                            Failed
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-light transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-text-muted">#TXN-87992</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-white font-medium">Oct 18, 2023</span>
+<span class="text-xs text-text-muted">11:20 AM</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-[18px] text-primary">redeem</span>
+</div>
+<span class="font-medium text-white">Referral Bonus</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center text-xs font-bold text-green-400 bg-green-400/10 px-2 py-1 rounded">Credit</span>
+</td>
+<td class="px-6 py-5 text-right font-bold text-green-400">+$15.00</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                            Success
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-5 border-t border-border-dark flex items-center justify-between bg-surface-dark">
+<span class="text-sm text-text-muted">Showing <span class="text-white font-medium">1-5</span> of <span class="text-white font-medium">24</span></span>
+<div class="flex gap-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-muted hover:text-white hover:border-primary/50 transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-primary bg-primary text-white font-bold transition-colors shadow-lg shadow-primary/20">
+                                1
+                            </button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-muted hover:text-white hover:border-primary/50 transition-colors">
+                                2
+                            </button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-muted hover:text-white hover:border-primary/50 transition-colors">
+                                3
+                            </button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-border-dark bg-background-dark text-text-muted hover:text-white hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
